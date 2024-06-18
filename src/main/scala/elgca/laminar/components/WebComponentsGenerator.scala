@@ -87,6 +87,7 @@ class WebComponentsGenerator(
       // 这里添加
       case "js.Array[Double]"             => "asIsProp"
       case "js.Function1[Double, String]" => "asIsProp"
+      case "org.scalajs.dom.HTMLElement"  => "asIsProp"
       case _ =>
         println(
           s"PROP ...No impl defined for scala type `${scalaTypeStr}`, trying `htmlProp` for now.",

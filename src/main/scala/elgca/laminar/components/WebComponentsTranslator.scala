@@ -152,6 +152,7 @@ class WebComponentsTranslator(
     propName: String,
     jsTypes: List[Def.JsType],
   ): Boolean =
+//    return false //
     // I think in Shoelace a lot of these would be covered by a
     // "member has no documentation string" rule, but I haven't
     // checked for false positives.
@@ -723,6 +724,12 @@ class WebComponentsTranslator(
       //      }
       //    ) {
       //      printableTypes.map { case Def.JsCustomType(i) => i }.mkString(" | ")
+    } else if printableTypes.exists({
+        case Def.JsCustomType(element) if element == "HTMLElement" => true
+        case _                                                     => false
+      })
+    then {
+      "org.scalajs.dom.HTMLElement"
     } else {
 
       throw new Exception(
@@ -796,7 +803,9 @@ class WebComponentsTranslator(
         "js.Array[Double]"
       case Def.JsCustomType("(value: number) => string") =>
         "js.Function1[Double, String]"
-
+      case Def.JsCustomType("HTMLElement") |
+          Def.JsCustomType("JQ<HTMLElement>") =>
+        "org.scalajs.dom.HTMLElement"
       case t =>
         throw new Exception(
           s"WARNING: scalaPropOutputTypeStr: Unhandled js type `${t}` for ${context}.",
