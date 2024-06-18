@@ -819,7 +819,6 @@ class WebComponentsTranslator(
       .map(_.trim)
       .filter(_.nonEmpty)
       .map { str =>
-        println("Type======================>" + str)
         singleQuotedPattern
           .findFirstMatchIn(str)
           .map { m =>

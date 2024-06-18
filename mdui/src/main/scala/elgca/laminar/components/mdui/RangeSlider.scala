@@ -108,6 +108,7 @@ object RangeSlider extends WebComponent("mdui-range-slider") {
   lazy val value: HtmlProp[js.Array[Double], ?] = asIsProp("value")
 
   /** 用于自定义标签的显示格式的函数。函数参数为滑块的当前值，返回值为期望显示的文本。 */
+  lazy val labelFormatter: HtmlProp[js.Function1[Double, String], ?] = asIsProp("labelFormatter")
 
 
   // -- Slots --

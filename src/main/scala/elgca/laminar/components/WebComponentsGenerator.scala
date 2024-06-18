@@ -85,7 +85,8 @@ class WebComponentsGenerator(
       case "dom.MutationObserver" | "js.Array[js.Object]" => "asIsProp"
 
       // 这里添加
-      case "js.Array[Double]" => "asIsProp"
+      case "js.Array[Double]"             => "asIsProp"
+      case "js.Function1[Double, String]" => "asIsProp"
       case _ =>
         println(
           s"PROP ...No impl defined for scala type `${scalaTypeStr}`, trying `htmlProp` for now.",

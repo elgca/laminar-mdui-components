@@ -7,7 +7,7 @@ import scala.scalajs.js.|
 
 // This file is generated at compile-time by WebComponentsGenerator.scala
 
-/** Common Shoelace event types */
+/** Common MDUI event types */
 object EventTypes {
 
   @js.native
