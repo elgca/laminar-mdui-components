@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 圆形进度指示器组件
@@ -17,11 +17,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-circular-progress></mdui-circular-progress>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/CircularProgress.scala CircularProgress.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/CircularProgress.scala CircularProgress.scala source code]]
   */
 object CircularProgress extends WebComponent("mdui-circular-progress") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/circular-progress/circular-progress.js", JSImport.Namespace)
+  @JSImport("mdui/components/circular-progress/circular-progress.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = CircularProgress.type

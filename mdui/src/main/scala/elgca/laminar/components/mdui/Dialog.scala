@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 对话框组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-dialog>content</mdui-dialog>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Dialog.scala Dialog.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Dialog.scala Dialog.scala source code]]
   */
 object Dialog extends WebComponent("mdui-dialog") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/dialog/dialog.js", JSImport.Namespace)
+  @JSImport("mdui/components/dialog/dialog.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Dialog.type

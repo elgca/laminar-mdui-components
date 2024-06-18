@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 复选框组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-checkbox>Checkbox</mdui-checkbox>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Checkbox.scala Checkbox.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Checkbox.scala Checkbox.scala source code]]
   */
 object Checkbox extends WebComponent("mdui-checkbox") with ControlledInput {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/checkbox/checkbox.js", JSImport.Namespace)
+  @JSImport("mdui/components/checkbox/checkbox.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Checkbox.type

@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 图标组件
@@ -18,11 +18,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-icon name="search"></mdui-icon>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Icon.scala Icon.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Icon.scala Icon.scala source code]]
   */
 object Icon extends WebComponent("mdui-icon") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/icon/icon.js", JSImport.Namespace)
+  @JSImport("mdui/components/icon/icon.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Icon.type

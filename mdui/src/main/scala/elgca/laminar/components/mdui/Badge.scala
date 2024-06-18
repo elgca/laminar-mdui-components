@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 徽标组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-badge>12</mdui-badge>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Badge.scala Badge.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Badge.scala Badge.scala source code]]
   */
 object Badge extends WebComponent("mdui-badge") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/badge/badge.js", JSImport.Namespace)
+  @JSImport("mdui/components/badge/badge.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Badge.type

@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 图标按钮组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-button-icon icon="search"></mdui-button-icon>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/ButtonIcon.scala ButtonIcon.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/ButtonIcon.scala ButtonIcon.scala source code]]
   */
 object ButtonIcon extends WebComponent("mdui-button-icon") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/button-icon/button-icon.js", JSImport.Namespace)
+  @JSImport("mdui/components/button-icon/button-icon.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = ButtonIcon.type

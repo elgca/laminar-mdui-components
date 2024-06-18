@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 消息条组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-snackbar>message</mdui-snackbar>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Snackbar.scala Snackbar.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Snackbar.scala Snackbar.scala source code]]
   */
 object Snackbar extends WebComponent("mdui-snackbar") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/snackbar/snackbar.js", JSImport.Namespace)
+  @JSImport("mdui/components/snackbar/snackbar.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Snackbar.type

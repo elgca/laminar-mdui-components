@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 头像组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-avatar src="https://avatars.githubusercontent.com/u/3030330?s=40&v=4"></mdui-avatar>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Avatar.scala Avatar.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Avatar.scala Avatar.scala source code]]
   */
 object Avatar extends WebComponent("mdui-avatar") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/avatar/avatar.js", JSImport.Namespace)
+  @JSImport("mdui/components/avatar/avatar.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Avatar.type

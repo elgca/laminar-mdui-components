@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 底部应用栏组件
@@ -26,11 +26,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-bottom-app-bar>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/BottomAppBar.scala BottomAppBar.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/BottomAppBar.scala BottomAppBar.scala source code]]
   */
 object BottomAppBar extends WebComponent("mdui-bottom-app-bar") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/bottom-app-bar/bottom-app-bar.js", JSImport.Namespace)
+  @JSImport("mdui/components/bottom-app-bar/bottom-app-bar.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = BottomAppBar.type

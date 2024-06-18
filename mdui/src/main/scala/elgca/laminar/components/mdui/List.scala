@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 列表组件。需配合 `<mdui-list-item>` 组件使用
@@ -21,11 +21,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-list>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/List.scala List.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/List.scala List.scala source code]]
   */
 object List extends WebComponent("mdui-list") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/list/list.js", JSImport.Namespace)
+  @JSImport("mdui/components/list/list.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = List.type

@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 布局组件
@@ -22,11 +22,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-layout>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Layout.scala Layout.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Layout.scala Layout.scala source code]]
   */
 object Layout extends WebComponent("mdui-layout") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/layout/layout.js", JSImport.Namespace)
+  @JSImport("mdui/components/layout/layout.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Layout.type

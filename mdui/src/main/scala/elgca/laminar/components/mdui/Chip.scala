@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 纸片组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-chip>Chip</mdui-chip>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Chip.scala Chip.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Chip.scala Chip.scala source code]]
   */
 object Chip extends WebComponent("mdui-chip") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/chip/chip.js", JSImport.Namespace)
+  @JSImport("mdui/components/chip/chip.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Chip.type

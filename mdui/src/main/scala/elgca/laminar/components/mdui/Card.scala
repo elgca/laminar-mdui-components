@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 卡片组件
@@ -19,11 +19,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-card>card content</mdui-card>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Card.scala Card.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Card.scala Card.scala source code]]
   */
 object Card extends WebComponent("mdui-card") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/card/card.js", JSImport.Namespace)
+  @JSImport("mdui/components/card/card.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Card.type

@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 折叠面板组件，需配合 `<mdui-collapse-item>` 组件使用
@@ -21,11 +21,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-collapse>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Collapse.scala Collapse.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Collapse.scala Collapse.scala source code]]
   */
 object Collapse extends WebComponent("mdui-collapse") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/collapse/collapse.js", JSImport.Namespace)
+  @JSImport("mdui/components/collapse/collapse.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Collapse.type

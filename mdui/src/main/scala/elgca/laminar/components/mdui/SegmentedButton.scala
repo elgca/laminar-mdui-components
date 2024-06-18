@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 分段按钮项组件。需配合 `<mdui-segmented-button-group>` 组件使用
@@ -22,11 +22,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-segmented-button-group>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/SegmentedButton.scala SegmentedButton.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/SegmentedButton.scala SegmentedButton.scala source code]]
   */
 object SegmentedButton extends WebComponent("mdui-segmented-button") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/segmented-button/segmented-button.js", JSImport.Namespace)
+  @JSImport("mdui/components/segmented-button/segmented-button.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = SegmentedButton.type

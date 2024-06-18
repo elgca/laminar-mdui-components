@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 范围滑块组件
@@ -17,11 +17,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-range-slider></mdui-range-slider>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/RangeSlider.scala RangeSlider.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/RangeSlider.scala RangeSlider.scala source code]]
   */
 object RangeSlider extends WebComponent("mdui-range-slider") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/range-slider/range-slider.js", JSImport.Namespace)
+  @JSImport("mdui/components/range-slider/range-slider.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = RangeSlider.type

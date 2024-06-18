@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 菜单项组件。需配合 `<mdui-menu>` 组件使用
@@ -21,11 +21,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-menu>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/MenuItem.scala MenuItem.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/MenuItem.scala MenuItem.scala source code]]
   */
 object MenuItem extends WebComponent("mdui-menu-item") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/menu-item/menu-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/menu-item/menu-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = MenuItem.type

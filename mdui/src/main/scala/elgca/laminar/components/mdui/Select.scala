@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 选择框组件。需配合 `<mdui-menu-item>` 组件使用
@@ -22,11 +22,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-select>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Select.scala Select.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Select.scala Select.scala source code]]
   */
 object Select extends WebComponent("mdui-select") with ControlledInput {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/select/select.js", JSImport.Namespace)
+  @JSImport("mdui/components/select/select.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Select.type

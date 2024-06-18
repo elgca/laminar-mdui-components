@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 分割线组件
@@ -17,11 +17,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-divider></mdui-divider>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Divider.scala Divider.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Divider.scala Divider.scala source code]]
   */
 object Divider extends WebComponent("mdui-divider") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/divider/divider.js", JSImport.Namespace)
+  @JSImport("mdui/components/divider/divider.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Divider.type

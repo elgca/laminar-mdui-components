@@ -10,16 +10,16 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 在手机端，`modal` 始终为 `true`；大于手机端时，`modal` 属性才开始生效
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/NavigationDrawer.scala NavigationDrawer.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/NavigationDrawer.scala NavigationDrawer.scala source code]]
   */
 object NavigationDrawer extends WebComponent("mdui-navigation-drawer") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/navigation-drawer/navigation-drawer.js", JSImport.Namespace)
+  @JSImport("mdui/components/navigation-drawer/navigation-drawer.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = NavigationDrawer.type

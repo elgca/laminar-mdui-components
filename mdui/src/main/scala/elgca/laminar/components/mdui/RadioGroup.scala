@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 单选框组组件。需配合 `<mdui-radio>` 组件使用
@@ -22,11 +22,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-radio-group>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/RadioGroup.scala RadioGroup.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/RadioGroup.scala RadioGroup.scala source code]]
   */
 object RadioGroup extends WebComponent("mdui-radio-group") with ControlledInput {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/radio-group/radio-group.js", JSImport.Namespace)
+  @JSImport("mdui/components/radio-group/radio-group.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = RadioGroup.type

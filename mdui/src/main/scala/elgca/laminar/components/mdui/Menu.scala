@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 键盘快捷键：
@@ -20,11 +20,11 @@ import scala.scalajs.js.annotation.JSImport
   * * `Enter` - 包含子菜单时，打开子菜单；为链接时，跳转链接
   * * `Escape` - 子菜单已打开时，关闭子菜单
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Menu.scala Menu.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Menu.scala Menu.scala source code]]
   */
 object Menu extends WebComponent("mdui-menu") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/menu/menu.js", JSImport.Namespace)
+  @JSImport("mdui/components/menu/menu.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Menu.type

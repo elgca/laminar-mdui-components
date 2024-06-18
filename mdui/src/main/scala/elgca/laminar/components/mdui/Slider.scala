@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 滑块组件
@@ -17,11 +17,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-slider></mdui-slider>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Slider.scala Slider.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Slider.scala Slider.scala source code]]
   */
 object Slider extends WebComponent("mdui-slider") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/slider/slider.js", JSImport.Namespace)
+  @JSImport("mdui/components/slider/slider.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Slider.type

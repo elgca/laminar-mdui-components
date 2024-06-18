@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 顶部应用栏组件
@@ -24,11 +24,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-top-app-bar>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/TopAppBar.scala TopAppBar.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/TopAppBar.scala TopAppBar.scala source code]]
   */
 object TopAppBar extends WebComponent("mdui-top-app-bar") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/top-app-bar/top-app-bar.js", JSImport.Namespace)
+  @JSImport("mdui/components/top-app-bar/top-app-bar.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = TopAppBar.type

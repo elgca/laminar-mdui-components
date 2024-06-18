@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 底部导航栏项组件。需配合 `<mdui-navigation-bar>` 组件使用
@@ -23,11 +23,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-navigation-bar>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/NavigationBarItem.scala NavigationBarItem.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/NavigationBarItem.scala NavigationBarItem.scala source code]]
   */
 object NavigationBarItem extends WebComponent("mdui-navigation-bar-item") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/navigation-bar-item/navigation-bar-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/navigation-bar-item/navigation-bar-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = NavigationBarItem.type

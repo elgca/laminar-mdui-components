@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 工具提示组件
@@ -21,11 +21,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-tooltip>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Tooltip.scala Tooltip.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Tooltip.scala Tooltip.scala source code]]
   */
 object Tooltip extends WebComponent("mdui-tooltip") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/tooltip/tooltip.js", JSImport.Namespace)
+  @JSImport("mdui/components/tooltip/tooltip.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Tooltip.type

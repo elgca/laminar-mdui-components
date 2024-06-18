@@ -11,7 +11,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 开关切换组件
@@ -20,11 +20,11 @@ import scala.scalajs.js.annotation.JSImport
   * <mdui-switch></mdui-switch>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Switch.scala Switch.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Switch.scala Switch.scala source code]]
   */
 object Switch extends WebComponent("mdui-switch") with ControlledInput {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/switch/switch.js", JSImport.Namespace)
+  @JSImport("mdui/components/switch/switch.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Switch.type

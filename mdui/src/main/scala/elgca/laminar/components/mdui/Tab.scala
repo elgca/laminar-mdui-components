@@ -9,7 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 选项卡导航项组件。需配合 `<mdui-tabs>` 和 `<mdui-tab-panel>` 组件使用
@@ -26,11 +26,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-tabs>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Tab.scala Tab.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Tab.scala Tab.scala source code]]
   */
 object Tab extends WebComponent("mdui-tab") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/tab/tab.js", JSImport.Namespace)
+  @JSImport("mdui/components/tab/tab.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Tab.type

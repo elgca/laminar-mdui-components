@@ -11,6 +11,7 @@ class WebComponentsTranslator(
   val uiLibAttrDefs: List[AttrDef],
   val uiLibReflectedAttrDefs: List[ReflectedHtmlAttrDef],
   val forceScalaAttrNames: List[(String, String)],
+  val jsImportBasePath: String,
 ) {
 
   import WebComponentsTranslator.Def
@@ -399,7 +400,7 @@ class WebComponentsTranslator(
 
   def importPath(elementDeclaration: M.Declaration): String = {
     val moduleName = elementDeclaration.pureTagName
-    s"@shoelace-style/shoelace/dist/components/${moduleName}/${moduleName}.js"
+    s"${jsImportBasePath}/${moduleName}/${moduleName}.js"
   }
 
   def events(elementDeclaration: M.Declaration): List[Def.Event] =
@@ -818,7 +819,7 @@ class WebComponentsTranslator(
       .map(_.trim)
       .filter(_.nonEmpty)
       .map { str =>
-        println("======================>" + str)
+        println("Type======================>" + str)
         singleQuotedPattern
           .findFirstMatchIn(str)
           .map { m =>

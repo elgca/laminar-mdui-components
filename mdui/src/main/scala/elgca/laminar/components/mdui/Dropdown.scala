@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /**
   * 下拉组件
@@ -25,11 +25,11 @@ import scala.scalajs.js.annotation.JSImport
   * </mdui-dropdown>
   * ```
   * 
-  * [[https://github.com/raquo/laminar-shoelace-components/blob/master/sample/src/main/scala/elgca/laminar/components/mdui/Dropdown.scala Dropdown.scala source code]]
+  * [[mdui/src/main/scala/mdui/src/main/scala/elgca/laminar/components/mdui/Dropdown.scala Dropdown.scala source code]]
   */
 object Dropdown extends WebComponent("mdui-dropdown") {
 
-  @JSImport("@shoelace-style/shoelace/dist/components/dropdown/dropdown.js", JSImport.Namespace)
+  @JSImport("mdui/components/dropdown/dropdown.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Dropdown.type

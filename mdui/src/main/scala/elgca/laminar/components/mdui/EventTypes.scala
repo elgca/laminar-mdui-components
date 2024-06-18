@@ -5,7 +5,7 @@ import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-// This file is generated at compile-time by ShoelaceGenerator.scala
+// This file is generated at compile-time by WebComponentsGenerator.scala
 
 /** Common Shoelace event types */
 object EventTypes {

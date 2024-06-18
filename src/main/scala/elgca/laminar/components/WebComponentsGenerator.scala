@@ -18,30 +18,23 @@ class WebComponentsGenerator(
   val format: CodeFormatting = CodeFormatting(),
 ) extends SourceGenerator(format) {
 
-  val Config(
-    onlineSourceRoot,
-    customElementsJsonPath,
-    baseOutputDirectoryPath,
-    baseOutputPackagePath,
-  ) = config
-
   final val Def: WebComponentsDef.type = WebComponentsDef
 
   /** Overwrite this with directory name if you ant to output components in a subdirectory */
   lazy val componentsPackageName: String = ""
 
   lazy val componentsPackagePath: String = List(
-    baseOutputPackagePath,
+    config.baseOutputPackagePath,
     componentsPackageName,
   ).filter(_.nonEmpty).mkString(".")
 
   /** Package path of EventTypes file */
-  lazy val eventTypesPackagePath: String = baseOutputPackagePath
+  lazy val eventTypesPackagePath: String = config.baseOutputPackagePath
 
   lazy val eventTypesObjectName: String = "EventTypes"
 
   /** Package path of CommonTypes, CommonKeys, WebComponent, etc. files */
-  lazy val helpersPackagePath: String = baseOutputPackagePath
+  lazy val helpersPackagePath: String = config.baseOutputPackagePath
 
   lazy val baseCustomEventType: String = "CustomEvent"
 
@@ -125,7 +118,7 @@ class WebComponentsGenerator(
 
   lazy val manifest: CustomElementsManifest =
     try {
-      val fileContent = Files.readString(Path.of(customElementsJsonPath))
+      val fileContent = Files.readString(Path.of(config.customElementsJsonPath))
       import upickle.default.*
       read[CustomElementsManifest](fileContent)
     } catch {
@@ -143,6 +136,7 @@ class WebComponentsGenerator(
     forceScalaAttrNames = List(
       "autocorrect" -> "autoCorrect",
     ),
+    jsImportBasePath = config.jsImportBasePath,
   )
 
   def generate(): Unit = {
@@ -196,10 +190,10 @@ class WebComponentsGenerator(
       line("import scala.scalajs.js.|")
     }
     line()
-    line("// This file is generated at compile-time by ShoelaceGenerator.scala")
+    line(s"// This file is generated at compile-time by ${codeFileName}")
     line()
     // val objCommentLines = element.description ++ element.docUrl.map(url => s"[[$url Shoelace ${element.scalaName} docs]]").toList
-    blockCommentLines(List("Common Shoelace event types"))
+    blockCommentLines(List(s"Common ${config.frameworkName} event types"))
     enter(s"object ${eventTypesObjectName} {", "}") {
       line()
       line("@js.native")
@@ -242,11 +236,13 @@ class WebComponentsGenerator(
 
     val objCommentLines = {
       val onlineSourceUrl =
-        onlineSourceRoot + "/" + baseOutputDirectoryPath + "/" + elementFileName
+        config.onlineSourceRoot + "/" + config.baseOutputDirectoryPath + "/" + elementFileName
       val onlineSourceUrlLine =
         s"[[$onlineSourceUrl ${elementFileName} source code]]"
       val shoelaceDocUrlLines = element.docUrl
-        .map(url => s"[[$url Shoelace ${element.scalaName} docs]]")
+        .map(url =>
+          s"[[$url ${config.frameworkName} ${element.scalaName} docs]]",
+        )
         .toList
       List(
         element.description,
@@ -336,7 +332,9 @@ class WebComponentsGenerator(
     }
     line("import scala.scalajs.js.annotation.JSImport")
     line()
-    line("// This file is generated at compile-time by ShoelaceGenerator.scala")
+    line(
+      s"// This file is generated at compile-time by ${codeFileName}",
+    )
     line()
   }
 
@@ -632,8 +630,8 @@ class WebComponentsGenerator(
     fileName: String,
     fileContent: String,
   ): File = {
-    val filePath = baseOutputDirectoryPath + "/" + (packagePath + ".")
-      .replace(baseOutputPackagePath + ".", "")
+    val filePath = config.baseOutputDirectoryPath + "/" + (packagePath + ".")
+      .replace(config.baseOutputPackagePath + ".", "")
       .replace(".", "/") + fileName.replaceAll(".scala$", "") + ".scala"
     val outputFile = new File(filePath)
     outputFile.getParentFile.mkdirs()
