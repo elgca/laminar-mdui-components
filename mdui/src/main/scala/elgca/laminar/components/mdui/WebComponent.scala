@@ -9,10 +9,6 @@ import org.scalajs.dom
 
 import scala.scalajs.js
 
-/**
- * Copy from [[https://github.com/raquo/laminar-shoelace-components/blob/master/src/main/scala/com/raquo/laminar/shoelace/sl/WebComponent.scala]]
- */
-
 /** Base "trait" for all web components. */
 abstract class WebComponent(tagName: String) extends CommonTypes { this: Self =>
 

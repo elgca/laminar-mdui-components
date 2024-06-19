@@ -1,6 +1,3 @@
-/**
- * Copy from [[https://github.com/raquo/laminar-shoelace-components/blob/master/src/main/scala/com/raquo/laminar/shoelace/sl/ControlledInput.scala]]
- */
 package elgca.laminar.components.mdui
 
 import com.raquo.laminar.inputs.InputController

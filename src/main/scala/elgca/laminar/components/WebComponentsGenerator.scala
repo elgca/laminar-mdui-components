@@ -235,7 +235,7 @@ class WebComponentsGenerator(
         config.onlineSourceRoot + "/" + config.baseOutputDirectoryPath + "/" + elementFileName
       val onlineSourceUrlLine =
         s"[[$onlineSourceUrl ${elementFileName} source code]]"
-      val shoelaceDocUrlLines = element.docUrl
+      val componentsDocUrl = element.docUrl
         .map(url =>
           s"[[$url ${config.frameworkName} ${element.scalaName} docs]]",
         )
@@ -243,7 +243,7 @@ class WebComponentsGenerator(
       List(
         element.description,
         List(onlineSourceUrlLine),
-        shoelaceDocUrlLines,
+        componentsDocUrl,
       ).filter(_.nonEmpty).flatMap(_ :+ "").init
     }
 

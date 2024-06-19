@@ -10,9 +10,6 @@ import com.raquo.laminar.modifiers.KeySetter
 import com.raquo.laminar.modifiers.KeySetter.StyleSetter
 import org.scalajs.dom
 
-/**
- * Copy from [[https://github.com/raquo/laminar-shoelace-components/blob/master/src/main/scala/com/raquo/laminar/shoelace/sl/CommonTypes.scala]]
- */
 trait CommonTypes {
 
   // #TODO[API] I should make use of Laminar helpers like lengthAutoStyle in StyleProps.scala,

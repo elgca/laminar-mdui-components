@@ -1,6 +1,3 @@
-/**
- * Copy from [[https://github.com/raquo/laminar-shoelace-components/blob/master/src/main/scala/com/raquo/laminar/shoelace/sl/CommonKeys.scala]]
- */
 package elgca.laminar.components.mdui
 
 import com.raquo.ew.JsArray
