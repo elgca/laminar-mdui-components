@@ -73,7 +73,7 @@ object BottomAppBar extends WebComponent("mdui-bottom-app-bar") {
 
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -81,11 +81,11 @@ object BottomAppBar extends WebComponent("mdui-bottom-app-bar") {
 
     object scrollBehavior extends HtmlAttr[String]("scroll-behavior", StringAsIsCodec) {
 
-      lazy val hide: HtmlAttrSetter[String] = scrollBehavior("hide")
+      lazy val `hide`: HtmlAttrSetter[String] = scrollBehavior("hide")
 
-      lazy val shrink: HtmlAttrSetter[String] = scrollBehavior("shrink")
+      lazy val `shrink`: HtmlAttrSetter[String] = scrollBehavior("shrink")
 
-      lazy val elevate: HtmlAttrSetter[String] = scrollBehavior("elevate")
+      lazy val `elevate`: HtmlAttrSetter[String] = scrollBehavior("elevate")
     }
   }
 

@@ -43,7 +43,7 @@ object Badge extends WebComponent("mdui-badge") {
     * * `large`：大型徽标，会显示文本
     */
   lazy val variant: CommonKeys.variant.type = CommonKeys.variant
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -51,9 +51,9 @@ object Badge extends WebComponent("mdui-badge") {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val small: HtmlAttrSetter[String] = variant("small")
+      lazy val `small`: HtmlAttrSetter[String] = variant("small")
 
-      lazy val large: HtmlAttrSetter[String] = variant("large")
+      lazy val `large`: HtmlAttrSetter[String] = variant("large")
     }
   }
 

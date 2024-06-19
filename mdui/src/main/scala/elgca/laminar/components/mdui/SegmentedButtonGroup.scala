@@ -72,7 +72,7 @@ object SegmentedButtonGroup extends WebComponent("mdui-segmented-button-group") 
 
   /** 提交表单时的名称，将与表单数据一起提交 */
   lazy val name: HtmlAttr[String] = stringAttr("name")
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -80,9 +80,9 @@ object SegmentedButtonGroup extends WebComponent("mdui-segmented-button-group") 
 
     object selects extends HtmlAttr[String]("selects", StringAsIsCodec) {
 
-      lazy val single: HtmlAttrSetter[String] = selects("single")
+      lazy val `single`: HtmlAttrSetter[String] = selects("single")
 
-      lazy val multiple: HtmlAttrSetter[String] = selects("multiple")
+      lazy val `multiple`: HtmlAttrSetter[String] = selects("multiple")
     }
   }
 

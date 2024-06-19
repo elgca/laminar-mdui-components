@@ -101,7 +101,7 @@ object Dropdown extends WebComponent("mdui-dropdown") {
 
   /** 是否在触发下拉组件的光标位置打开下拉组件，常用于打开鼠标右键菜单 */
   lazy val openOnPointer: HtmlAttr[Boolean] = boolAttr("open-on-pointer")
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -109,31 +109,31 @@ object Dropdown extends WebComponent("mdui-dropdown") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val auto: HtmlAttrSetter[String] = placement("auto")
+      lazy val `auto`: HtmlAttrSetter[String] = placement("auto")
 
-      lazy val topStart: HtmlAttrSetter[String] = placement("top-start")
+      lazy val `top-start`: HtmlAttrSetter[String] = placement("top-start")
 
-      lazy val top: HtmlAttrSetter[String] = placement("top")
+      lazy val `top`: HtmlAttrSetter[String] = placement("top")
 
-      lazy val topEnd: HtmlAttrSetter[String] = placement("top-end")
+      lazy val `top-end`: HtmlAttrSetter[String] = placement("top-end")
 
-      lazy val bottomStart: HtmlAttrSetter[String] = placement("bottom-start")
+      lazy val `bottom-start`: HtmlAttrSetter[String] = placement("bottom-start")
 
-      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
+      lazy val `bottom`: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val bottomEnd: HtmlAttrSetter[String] = placement("bottom-end")
+      lazy val `bottom-end`: HtmlAttrSetter[String] = placement("bottom-end")
 
-      lazy val leftStart: HtmlAttrSetter[String] = placement("left-start")
+      lazy val `left-start`: HtmlAttrSetter[String] = placement("left-start")
 
-      lazy val left: HtmlAttrSetter[String] = placement("left")
+      lazy val `left`: HtmlAttrSetter[String] = placement("left")
 
-      lazy val leftEnd: HtmlAttrSetter[String] = placement("left-end")
+      lazy val `left-end`: HtmlAttrSetter[String] = placement("left-end")
 
-      lazy val rightStart: HtmlAttrSetter[String] = placement("right-start")
+      lazy val `right-start`: HtmlAttrSetter[String] = placement("right-start")
 
-      lazy val right: HtmlAttrSetter[String] = placement("right")
+      lazy val `right`: HtmlAttrSetter[String] = placement("right")
 
-      lazy val rightEnd: HtmlAttrSetter[String] = placement("right-end")
+      lazy val `right-end`: HtmlAttrSetter[String] = placement("right-end")
     }
   }
 

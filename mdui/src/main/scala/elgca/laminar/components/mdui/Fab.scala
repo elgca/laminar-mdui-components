@@ -237,7 +237,7 @@ object Fab extends WebComponent("mdui-fab") {
     * **Note**：仅在未设置 `href` 属性且 `type="submit"` 时，此属性才有效。
     */
   lazy val formTarget: CommonKeys.formTarget.type = CommonKeys.formTarget
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -245,100 +245,100 @@ object Fab extends WebComponent("mdui-fab") {
 
     object formMethod extends HtmlAttr[String]("formmethod", StringAsIsCodec) {
 
-      lazy val post: HtmlAttrSetter[String] = formMethod("post")
+      lazy val `post`: HtmlAttrSetter[String] = formMethod("post")
 
-      lazy val get: HtmlAttrSetter[String] = formMethod("get")
+      lazy val `get`: HtmlAttrSetter[String] = formMethod("get")
     }
 
     object size extends HtmlAttr[String]("size", StringAsIsCodec) {
 
-      lazy val normal: HtmlAttrSetter[String] = size("normal")
+      lazy val `normal`: HtmlAttrSetter[String] = size("normal")
 
-      lazy val small: HtmlAttrSetter[String] = size("small")
+      lazy val `small`: HtmlAttrSetter[String] = size("small")
 
-      lazy val large: HtmlAttrSetter[String] = size("large")
+      lazy val `large`: HtmlAttrSetter[String] = size("large")
     }
 
     object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
 
-      lazy val alternate: HtmlAttrSetter[String] = rel("alternate")
+      lazy val `alternate`: HtmlAttrSetter[String] = rel("alternate")
 
-      lazy val author: HtmlAttrSetter[String] = rel("author")
+      lazy val `author`: HtmlAttrSetter[String] = rel("author")
 
-      lazy val bookmark: HtmlAttrSetter[String] = rel("bookmark")
+      lazy val `bookmark`: HtmlAttrSetter[String] = rel("bookmark")
 
-      lazy val external: HtmlAttrSetter[String] = rel("external")
+      lazy val `external`: HtmlAttrSetter[String] = rel("external")
 
-      lazy val help: HtmlAttrSetter[String] = rel("help")
+      lazy val `help`: HtmlAttrSetter[String] = rel("help")
 
-      lazy val license: HtmlAttrSetter[String] = rel("license")
+      lazy val `license`: HtmlAttrSetter[String] = rel("license")
 
-      lazy val me: HtmlAttrSetter[String] = rel("me")
+      lazy val `me`: HtmlAttrSetter[String] = rel("me")
 
-      lazy val next: HtmlAttrSetter[String] = rel("next")
+      lazy val `next`: HtmlAttrSetter[String] = rel("next")
 
-      lazy val nofollow: HtmlAttrSetter[String] = rel("nofollow")
+      lazy val `nofollow`: HtmlAttrSetter[String] = rel("nofollow")
 
-      lazy val noreferrer: HtmlAttrSetter[String] = rel("noreferrer")
+      lazy val `noreferrer`: HtmlAttrSetter[String] = rel("noreferrer")
 
-      lazy val opener: HtmlAttrSetter[String] = rel("opener")
+      lazy val `opener`: HtmlAttrSetter[String] = rel("opener")
 
-      lazy val prev: HtmlAttrSetter[String] = rel("prev")
+      lazy val `prev`: HtmlAttrSetter[String] = rel("prev")
 
-      lazy val search: HtmlAttrSetter[String] = rel("search")
+      lazy val `search`: HtmlAttrSetter[String] = rel("search")
 
-      lazy val tag: HtmlAttrSetter[String] = rel("tag")
+      lazy val `tag`: HtmlAttrSetter[String] = rel("tag")
     }
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val primary: HtmlAttrSetter[String] = variant("primary")
+      lazy val `primary`: HtmlAttrSetter[String] = variant("primary")
 
-      lazy val surface: HtmlAttrSetter[String] = variant("surface")
+      lazy val `surface`: HtmlAttrSetter[String] = variant("surface")
 
-      lazy val secondary: HtmlAttrSetter[String] = variant("secondary")
+      lazy val `secondary`: HtmlAttrSetter[String] = variant("secondary")
 
-      lazy val tertiary: HtmlAttrSetter[String] = variant("tertiary")
+      lazy val `tertiary`: HtmlAttrSetter[String] = variant("tertiary")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
 
-      lazy val submit: HtmlAttrSetter[String] = `type`("submit")
+      lazy val `submit`: HtmlAttrSetter[String] = `type`("submit")
 
-      lazy val reset: HtmlAttrSetter[String] = `type`("reset")
+      lazy val `reset`: HtmlAttrSetter[String] = `type`("reset")
 
-      lazy val button: HtmlAttrSetter[String] = `type`("button")
+      lazy val `button`: HtmlAttrSetter[String] = `type`("button")
     }
 
     object formTarget extends HtmlAttr[String]("formtarget", StringAsIsCodec) {
 
-      lazy val _self: HtmlAttrSetter[String] = formTarget("_self")
+      lazy val `_self`: HtmlAttrSetter[String] = formTarget("_self")
 
-      lazy val _blank: HtmlAttrSetter[String] = formTarget("_blank")
+      lazy val `_blank`: HtmlAttrSetter[String] = formTarget("_blank")
 
-      lazy val _parent: HtmlAttrSetter[String] = formTarget("_parent")
+      lazy val `_parent`: HtmlAttrSetter[String] = formTarget("_parent")
 
-      lazy val _top: HtmlAttrSetter[String] = formTarget("_top")
+      lazy val `_top`: HtmlAttrSetter[String] = formTarget("_top")
     }
 
     object formEncType extends HtmlAttr[String]("formenctype", StringAsIsCodec) {
 
-      lazy val application/xWwwFormUrlencoded: HtmlAttrSetter[String] = formEncType("application/x-www-form-urlencoded")
+      lazy val `application/x-www-form-urlencoded`: HtmlAttrSetter[String] = formEncType("application/x-www-form-urlencoded")
 
-      lazy val multipart/formData: HtmlAttrSetter[String] = formEncType("multipart/form-data")
+      lazy val `multipart/form-data`: HtmlAttrSetter[String] = formEncType("multipart/form-data")
 
-      lazy val text/plain: HtmlAttrSetter[String] = formEncType("text/plain")
+      lazy val `text/plain`: HtmlAttrSetter[String] = formEncType("text/plain")
     }
 
     object target extends HtmlAttr[String]("target", StringAsIsCodec) {
 
-      lazy val _blank: HtmlAttrSetter[String] = target("_blank")
+      lazy val `_blank`: HtmlAttrSetter[String] = target("_blank")
 
-      lazy val _parent: HtmlAttrSetter[String] = target("_parent")
+      lazy val `_parent`: HtmlAttrSetter[String] = target("_parent")
 
-      lazy val _self: HtmlAttrSetter[String] = target("_self")
+      lazy val `_self`: HtmlAttrSetter[String] = target("_self")
 
-      lazy val _top: HtmlAttrSetter[String] = target("_top")
+      lazy val `_top`: HtmlAttrSetter[String] = target("_top")
     }
   }
 

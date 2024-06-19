@@ -465,7 +465,7 @@ class WebComponentsGenerator(
             "}",
           ) {
             values.foreach { value =>
-              val valueName = st.scalifyName(value)
+              val valueName = commonKeyScalifyName(value)
               line()
               line(
                 s"lazy val ${valueName}: HtmlAttrSetter[String] = ${commonKeyName}(${repr(value)})",
@@ -480,6 +480,18 @@ class WebComponentsGenerator(
         println(s"> ${commonKeyName}[${attrName}] : ${values.mkString("|")}")
       }
     }
+  }
+
+  def commonKeyScalifyName(rawName: String): String = {
+    // 保留原本的字段信息
+    // keep org name, used more easy
+    s"`${rawName}`"
+//    val reservedScalaWords = List("lazy", "type")
+//    if reservedScalaWords.contains(rawName) then {
+//      s"`${rawName}`"
+//    } else {
+//      st.scalifyPrefixedName("", rawName)
+//    }
   }
 
   def printProps(element: Def.Element): Unit = {

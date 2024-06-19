@@ -51,7 +51,7 @@ object LayoutItem extends WebComponent("mdui-layout-item") {
 
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -59,13 +59,13 @@ object LayoutItem extends WebComponent("mdui-layout-item") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val top: HtmlAttrSetter[String] = placement("top")
+      lazy val `top`: HtmlAttrSetter[String] = placement("top")
 
-      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
+      lazy val `bottom`: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val left: HtmlAttrSetter[String] = placement("left")
+      lazy val `left`: HtmlAttrSetter[String] = placement("left")
 
-      lazy val right: HtmlAttrSetter[String] = placement("right")
+      lazy val `right`: HtmlAttrSetter[String] = placement("right")
     }
   }
 

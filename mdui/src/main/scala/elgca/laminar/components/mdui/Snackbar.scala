@@ -91,7 +91,7 @@ object Snackbar extends WebComponent("mdui-snackbar") {
 
   /** 点击或触摸 Snackbar 以外的区域时，是否关闭 Snackbar */
   lazy val closeOnOutsideClick: HtmlAttr[Boolean] = boolAttr("close-on-outside-click")
-
+  // -- CommonKeys --
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
@@ -99,17 +99,17 @@ object Snackbar extends WebComponent("mdui-snackbar") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val top: HtmlAttrSetter[String] = placement("top")
+      lazy val `top`: HtmlAttrSetter[String] = placement("top")
 
-      lazy val topStart: HtmlAttrSetter[String] = placement("top-start")
+      lazy val `top-start`: HtmlAttrSetter[String] = placement("top-start")
 
-      lazy val topEnd: HtmlAttrSetter[String] = placement("top-end")
+      lazy val `top-end`: HtmlAttrSetter[String] = placement("top-end")
 
-      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
+      lazy val `bottom`: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val bottomStart: HtmlAttrSetter[String] = placement("bottom-start")
+      lazy val `bottom-start`: HtmlAttrSetter[String] = placement("bottom-start")
 
-      lazy val bottomEnd: HtmlAttrSetter[String] = placement("bottom-end")
+      lazy val `bottom-end`: HtmlAttrSetter[String] = placement("bottom-end")
     }
   }
 
