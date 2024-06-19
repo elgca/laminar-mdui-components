@@ -76,24 +76,18 @@ class WebComponentsGenerator(
         "htmlAttr"
     }
 
-  def propImplName(scalaTypeStr: String): String =
-    scalaTypeStr match {
-      case "Boolean"                                      => "boolProp"
-      case "String"                                       => "stringProp"
-      case "Int"                                          => "intProp"
-      case "Double"                                       => "doubleProp"
-      case "dom.MutationObserver" | "js.Array[js.Object]" => "asIsProp"
+  def propImplName: PartialFunction[String, String] = {
+    case "Boolean"                                      => "boolProp"
+    case "String"                                       => "stringProp"
+    case "Int"                                          => "intProp"
+    case "Double"                                       => "doubleProp"
+    case "dom.MutationObserver" | "js.Array[js.Object]" => "asIsProp"
 
-      // 这里添加
-      case "js.Array[Double]"             => "asIsProp"
-      case "js.Function1[Double, String]" => "asIsProp"
-      case "org.scalajs.dom.HTMLElement"  => "asIsProp"
-      case _ =>
-        println(
-          s"PROP ...No impl defined for scala type `${scalaTypeStr}`, trying `htmlProp` for now.",
-        )
-        "htmlProp"
-    }
+    // 这里添加
+    case "js.Array[Double]"             => "asIsProp"
+    case "js.Function1[Double, String]" => "asIsProp"
+    case "org.scalajs.dom.HTMLElement"  => "asIsProp"
+  }
 
   def cssPropType(cssType: Def.CssType): String =
     cssType match {
@@ -433,23 +427,30 @@ class WebComponentsGenerator(
     element.writableNonReflectedProperties.foreach { prop =>
       line()
       val scalaInputTypeStr = st.scalaPropInputTypeStr(prop, element.tagName)
-      val (propName, propImpl) = st.useUiLibraryProp(
-        element.tagName,
-        prop.propName,
-        prop.jsTypes,
-      ) match {
-        case Some(uiLibraryScalaName) => "" -> s"L.$uiLibraryScalaName"
-        case None =>
-          val propName = propImplName(scalaInputTypeStr)
-          propName -> s"${propName}(${repr(prop.propName)})"
-      }
+      val propImpl = st
+        .useUiLibraryProp(element.tagName, prop.propName, prop.jsTypes)
+        .map(uiLibraryScalaName => s"L.$uiLibraryScalaName")
+        .orElse {
+          propImplName
+            .lift(scalaInputTypeStr)
+            .map(propMethodName => s"${propMethodName}(${repr(prop.propName)})")
+        }
       blockCommentLines(prop.description)
-      // 这里添加 propName 属性,暂时不转
-      if propName != "htmlProp" then {
-        line(
-          s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = ${propImpl}",
-        )
-      }
+      propImpl match
+        case Some(value) =>
+          line(
+            s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = ${value}",
+          )
+        case None =>
+          println(
+            s"PROP ...No impl defined for scala type `${scalaInputTypeStr}`, " +
+              s"tag:`${element.tagName}`, class:`${element.scalaName}`, " +
+              s" trying `asIsProp` for now.",
+          )
+          line(
+            s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = asIsProp(${repr(prop.propName)})",
+          )
+
     }
   }
 

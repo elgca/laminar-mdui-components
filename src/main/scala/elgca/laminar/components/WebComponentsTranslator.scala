@@ -152,7 +152,10 @@ class WebComponentsTranslator(
     propName: String,
     jsTypes: List[Def.JsType],
   ): Boolean =
-//    return false //
+    return (tagName, propName, jsTypes) match {
+//      case (_, "defaultValue" | "defaultChecked", _) => true
+      case _ => false
+    }
     // I think in Shoelace a lot of these would be covered by a
     // "member has no documentation string" rule, but I haven't
     // checked for false positives.
@@ -688,48 +691,54 @@ class WebComponentsTranslator(
             .mkString(", ")})",
       )
     } else if printableTypes.length == 1 then {
-      printableTypes.head match {
-        case Def.JsStringType                     => "String"
-        case Def.JsNumberType                     => "Int" // #nc for now
-        case Def.JsBooleanType                    => "Boolean"
-        case Def.JsCustomType("MutationObserver") => "dom.MutationObserver"
-        case Def.JsCustomType("Keyframe[]")       => "js.Array[js.Object]"
-        // case Def.JsCustomType("Element") => "elementProp" // #nc need custom codec
-        // case Def.JsCustomType(c) => c
-
-        // 这里添加
-        case Def.JsCustomType(i) if i.toIntOption.isDefined =>
-          "Int"
-        case Def.JsCustomType("number[]") =>
-          "js.Array[Double]"
-        case Def.JsCustomType("(value: number) => string") =>
-          "js.Function1[Double, String]"
-
-        case t =>
-          println(
-            s"WARNING: scalaPropInputTypeStr: Unhandled js type `${t}` for prop `${prop.propName}` in tag `${tagName}`.",
-          )
-          t.toString
+      val converter = DataTypeConverter.jsTypeToScalaPartial.orElse { case t =>
+        println(
+          s"WARNING: scalaPropInputTypeStr: Unhandled js type `${t}` for prop `${prop.propName}` in tag `${tagName}`.",
+        )
+        t.toString
       }
+      converter(printableTypes.head)
+//      printableTypes.head match {
+//        case Def.JsStringType                     => "String"
+//        case Def.JsNumberType                     => "Int" // #nc for now
+//        case Def.JsBooleanType                    => "Boolean"
+//        case Def.JsCustomType("MutationObserver") => "dom.MutationObserver"
+//        case Def.JsCustomType("Keyframe[]")       => "js.Array[js.Object]"
+//        // case Def.JsCustomType("Element") => "elementProp" // #nc need custom codec
+//        // case Def.JsCustomType(c) => c
+//
+//        // 这里添加
+//        case Def.JsCustomType(i) if i.toIntOption.isDefined =>
+//          "Int"
+//        case Def.JsCustomType("number[]") =>
+//          "js.Array[Double]"
+//        case Def.JsCustomType("(value: number) => string") =>
+//          "js.Function1[Double, String]"
+//
+//        case t =>
+//          println(
+//            s"WARNING: scalaPropInputTypeStr: Unhandled js type `${t}` for prop `${prop.propName}` in tag `${tagName}`.",
+//          )
+//          t.toString
+//      }
       // } else if (printableTypes == List(Def.JsCustomType("Element"), Def.JsCustomType("Element[]"))) {
       //  println(s"WARNING: scalaAttrInputType: Multi-element input not supported for attr `${attr.attrName}` in tag `${tagName}`.")
       //  "Element" // #nc or Element[], but how to express that...
-      //    } else if (
-      //      // 这里添加
-      //      printableTypes.forall {
-      //        case Def.JsCustomType(x)
-      //            if x.toIntOption.isDefined || x.toDoubleOption.isDefined =>
-      //          true
-      //        case t => false
-      //      }
-      //    ) {
-      //      printableTypes.map { case Def.JsCustomType(i) => i }.mkString(" | ")
-    } else if printableTypes.exists({
-        case Def.JsCustomType(element) if element == "HTMLElement" => true
-        case _                                                     => false
-      })
-    then {
-      "org.scalajs.dom.HTMLElement"
+    } else if (
+      // 这里添加支持多个会发生什么
+      true
+    ) {
+      printableTypes
+        .map(DataTypeConverter.jsTypeToScala)
+        .map(
+          _.getOrElse(
+            throw new Exception(
+              s"ERROR: scalaPropInputTypeStr does not support type in prop `${prop.propName}` in tag `${tagName}`: ${printableTypes
+                  .mkString(", ")}",
+            ),
+          ),
+        )
+        .mkString(" | ")
     } else {
 
       throw new Exception(
@@ -853,6 +862,8 @@ class WebComponentsTranslator(
               // 这里添加
               case number if number.toDoubleOption.isDefined =>
                 List(Def.JsNumberType)
+              case "JQ<HTMLElement>" =>
+                List(Def.JsCustomType("HTMLElement"))
               case custom =>
                 List(
                   Def.JsCustomType(custom),
