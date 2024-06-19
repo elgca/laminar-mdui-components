@@ -66,13 +66,28 @@ object BottomAppBar extends WebComponent("mdui-bottom-app-bar") {
     * 
     * * `hide`：滚动时隐藏
     */
-  lazy val scrollBehavior: HtmlAttr[String] = stringAttr("scroll-behavior")
+  lazy val scrollBehavior: CommonKeys.scrollBehavior.type = CommonKeys.scrollBehavior
 
   /** 在滚动多少距离之后触发滚动行为，单位为 `px` */
   lazy val scrollThreshold: HtmlAttr[Int] = intAttr("scroll-threshold")
 
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object scrollBehavior extends HtmlAttr[String]("scroll-behavior", StringAsIsCodec) {
+
+      lazy val hide: HtmlAttrSetter[String] = scrollBehavior("hide")
+
+      lazy val shrink: HtmlAttrSetter[String] = scrollBehavior("shrink")
+
+      lazy val elevate: HtmlAttrSetter[String] = scrollBehavior("elevate")
+    }
+  }
 
 
   // -- Props --

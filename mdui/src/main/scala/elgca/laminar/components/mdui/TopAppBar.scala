@@ -76,7 +76,7 @@ object TopAppBar extends WebComponent("mdui-top-app-bar") {
     * * `shrink`：在中型、大型应用栏中可使用，滚动时缩小成小型应用栏的样式
     * * `elevate`：滚动时添加阴影
     */
-  lazy val scrollBehavior: HtmlAttr[String] = stringAttr("scroll-behavior")
+  lazy val scrollBehavior: CommonKeys.scrollBehavior.type = CommonKeys.scrollBehavior
 
   /** 滚动条是否不位于顶部 */
   lazy val scrolling: HtmlAttr[Boolean] = boolAttr("scrolling")
@@ -101,6 +101,15 @@ object TopAppBar extends WebComponent("mdui-top-app-bar") {
       lazy val medium: HtmlAttrSetter[String] = variant("medium")
 
       lazy val large: HtmlAttrSetter[String] = variant("large")
+    }
+
+    object scrollBehavior extends HtmlAttr[String]("scroll-behavior", StringAsIsCodec) {
+
+      lazy val hide: HtmlAttrSetter[String] = scrollBehavior("hide")
+
+      lazy val shrink: HtmlAttrSetter[String] = scrollBehavior("shrink")
+
+      lazy val elevate: HtmlAttrSetter[String] = scrollBehavior("elevate")
     }
   }
 

@@ -46,7 +46,7 @@ object Menu extends WebComponent("mdui-menu") {
     * * `single`：单选
     * * `multiple`：多选
     */
-  lazy val selects: HtmlAttr[String] = stringAttr("selects")
+  lazy val selects: CommonKeys.selects.type = CommonKeys.selects
 
   /** 菜单项是否使用紧凑布局 */
   lazy val dense: HtmlAttr[Boolean] = boolAttr("dense")
@@ -66,6 +66,19 @@ object Menu extends WebComponent("mdui-menu") {
 
   /** 鼠标悬浮触发子菜单关闭的延时，单位毫秒 */
   lazy val submenuCloseDelay: HtmlAttr[Int] = intAttr("submenu-close-delay")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object selects extends HtmlAttr[String]("selects", StringAsIsCodec) {
+
+      lazy val single: HtmlAttrSetter[String] = selects("single")
+
+      lazy val multiple: HtmlAttrSetter[String] = selects("multiple")
+    }
+  }
 
 
   // -- Props --

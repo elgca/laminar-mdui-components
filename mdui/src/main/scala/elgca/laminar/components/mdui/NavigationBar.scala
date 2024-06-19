@@ -76,7 +76,7 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
     * 
     * * `hide`：滚动时隐藏
     */
-  lazy val scrollBehavior: HtmlAttr[String] = stringAttr("scroll-behavior")
+  lazy val scrollBehavior: CommonKeys.scrollBehavior.type = CommonKeys.scrollBehavior
 
   /** 在滚动多少距离之后触发滚动行为，单位为 `px` */
   lazy val scrollThreshold: HtmlAttr[Int] = intAttr("scroll-threshold")
@@ -98,6 +98,15 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
       lazy val labeled: HtmlAttrSetter[String] = labelVisibility("labeled")
 
       lazy val unlabeled: HtmlAttrSetter[String] = labelVisibility("unlabeled")
+    }
+
+    object scrollBehavior extends HtmlAttr[String]("scroll-behavior", StringAsIsCodec) {
+
+      lazy val hide: HtmlAttrSetter[String] = scrollBehavior("hide")
+
+      lazy val shrink: HtmlAttrSetter[String] = scrollBehavior("shrink")
+
+      lazy val elevate: HtmlAttrSetter[String] = scrollBehavior("elevate")
     }
   }
 

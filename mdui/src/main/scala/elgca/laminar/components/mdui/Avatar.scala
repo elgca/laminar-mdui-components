@@ -48,13 +48,32 @@ object Avatar extends WebComponent("mdui-avatar") {
     * * `none`：保留图片原有尺寸，内容不会被缩放或拉伸
     * * `scale-down`：保持图片原有尺寸比例，内容尺寸与 `none` 或 `contain` 中较小的一个相同
     */
-  lazy val fit: HtmlAttr[String] = stringAttr("fit")
+  lazy val fit: CommonKeys.fit.type = CommonKeys.fit
 
   /** 头像的 Material Icons 图标名 */
   lazy val icon: HtmlAttr[String] = stringAttr("icon")
 
   /** 头像的替代文本描述 */
   lazy val label: HtmlAttr[String] = stringAttr("label")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object fit extends HtmlAttr[String]("fit", StringAsIsCodec) {
+
+      lazy val contain: HtmlAttrSetter[String] = fit("contain")
+
+      lazy val cover: HtmlAttrSetter[String] = fit("cover")
+
+      lazy val fill: HtmlAttrSetter[String] = fit("fill")
+
+      lazy val none: HtmlAttrSetter[String] = fit("none")
+
+      lazy val scaleDown: HtmlAttrSetter[String] = fit("scale-down")
+    }
+  }
 
 
   // -- Props --

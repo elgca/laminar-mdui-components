@@ -197,7 +197,7 @@ object SegmentedButton extends WebComponent("mdui-segmented-button") {
     * 
     * **Note**：仅在未指定 `href` 属性且 `type="submit"` 时，此属性才有效。
     */
-  lazy val formEncType: HtmlAttr[String] = stringAttr("formenctype")
+  lazy val formEncType: CommonKeys.formEncType.type = CommonKeys.formEncType
 
   /**
     * 指定提交表单时使用的 HTTP 方法。可选值包括：
@@ -209,7 +209,7 @@ object SegmentedButton extends WebComponent("mdui-segmented-button") {
     * 
     * **Note**：仅在未设置 `href` 属性且 `type="submit"` 时，此属性才有效。
     */
-  lazy val formMethod: HtmlAttr[String] = stringAttr("formmethod")
+  lazy val formMethod: CommonKeys.formMethod.type = CommonKeys.formMethod
 
   /**
     * 如果设置了此属性，表单提交时将不执行表单验证。
@@ -232,12 +232,19 @@ object SegmentedButton extends WebComponent("mdui-segmented-button") {
     * 
     * **Note**：仅在未设置 `href` 属性且 `type="submit"` 时，此属性才有效。
     */
-  lazy val formTarget: HtmlAttr[String] = stringAttr("formtarget")
+  lazy val formTarget: CommonKeys.formTarget.type = CommonKeys.formTarget
 
   object CommonKeys extends CommonTypes {
     import com.raquo.laminar.codecs.StringAsIsCodec
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
     import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object formMethod extends HtmlAttr[String]("formmethod", StringAsIsCodec) {
+
+      lazy val post: HtmlAttrSetter[String] = formMethod("post")
+
+      lazy val get: HtmlAttrSetter[String] = formMethod("get")
+    }
 
     object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
 
@@ -277,6 +284,26 @@ object SegmentedButton extends WebComponent("mdui-segmented-button") {
       lazy val reset: HtmlAttrSetter[String] = `type`("reset")
 
       lazy val button: HtmlAttrSetter[String] = `type`("button")
+    }
+
+    object formTarget extends HtmlAttr[String]("formtarget", StringAsIsCodec) {
+
+      lazy val _self: HtmlAttrSetter[String] = formTarget("_self")
+
+      lazy val _blank: HtmlAttrSetter[String] = formTarget("_blank")
+
+      lazy val _parent: HtmlAttrSetter[String] = formTarget("_parent")
+
+      lazy val _top: HtmlAttrSetter[String] = formTarget("_top")
+    }
+
+    object formEncType extends HtmlAttr[String]("formenctype", StringAsIsCodec) {
+
+      lazy val application/xWwwFormUrlencoded: HtmlAttrSetter[String] = formEncType("application/x-www-form-urlencoded")
+
+      lazy val multipart/formData: HtmlAttrSetter[String] = formEncType("multipart/form-data")
+
+      lazy val text/plain: HtmlAttrSetter[String] = formEncType("text/plain")
     }
 
     object target extends HtmlAttr[String]("target", StringAsIsCodec) {
