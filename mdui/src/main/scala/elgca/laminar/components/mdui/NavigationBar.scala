@@ -90,6 +90,9 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
   /** 当前选中的 `<mdui-navigation-bar-item>` 的值 */
   lazy val value: HtmlProp[String, ?] = stringProp("value")
 
+  /** 需要监听其滚动事件的元素。值可以是 CSS 选择器、DOM 元素、或 [JQ 对象](/docs/2/functions/jq)。默认监听 `window` 的滚动事件 */
+  lazy val scrollTarget: HtmlProp[String | org.scalajs.dom.HTMLElement, ?] = asIsProp("scrollTarget")
+
 
   // -- Slots --
 
@@ -141,6 +144,9 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
       * * `hide`：滚动时隐藏
       */
     var scrollBehavior: String | Unit
+
+    /** 需要监听其滚动事件的元素。值可以是 CSS 选择器、DOM 元素、或 [JQ 对象](/docs/2/functions/jq)。默认监听 `window` 的滚动事件 */
+    var scrollTarget: String | org.scalajs.dom.HTMLElement | Unit
 
     /** 在滚动多少距离之后触发滚动行为，单位为 `px` */
     var scrollThreshold: Int | Unit

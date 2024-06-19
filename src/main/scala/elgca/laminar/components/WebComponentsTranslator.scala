@@ -142,8 +142,8 @@ class WebComponentsTranslator(
     attrNameOrPropName: String,
   ): Option[(String, List[String])] =
     (tagName, attrNameOrPropName) match {
-      case ("mdui-alert", "duration") => Some(("durationMs", Nil))
-      case _                          => None
+//      case ("mdui-alert", "duration") => Some(("durationMs", Nil))
+      case _ => None
     }
 
   /** Pretend that these fields don't exist in the manifest at all. */
@@ -153,8 +153,8 @@ class WebComponentsTranslator(
     jsTypes: List[Def.JsType],
   ): Boolean =
     return (tagName, propName, jsTypes) match {
-//      case (_, "defaultValue" | "defaultChecked", _) => true
-      case _ => false
+      case (_, "defaultValue" | "defaultChecked", _) => true
+      case _                                         => false
     }
     // I think in Shoelace a lot of these would be covered by a
     // "member has no documentation string" rule, but I haven't

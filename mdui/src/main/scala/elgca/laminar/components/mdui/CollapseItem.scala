@@ -65,6 +65,9 @@ object CollapseItem extends WebComponent("mdui-collapse-item") {
   /** 此折叠面板项的值 */
   lazy val value: HtmlProp[String, ?] = stringProp("value")
 
+  /** 点击该元素时触发折叠，值可以是 CSS 选择器、DOM 元素、或 [JQ 对象](/docs/2/functions/jq)。默认为点击整个 header 区域触发 */
+  lazy val trigger: HtmlProp[String | org.scalajs.dom.HTMLElement, ?] = asIsProp("trigger")
+
 
   // -- Slots --
 
@@ -106,5 +109,8 @@ object CollapseItem extends WebComponent("mdui-collapse-item") {
 
     /** 是否禁用此折叠面板项 */
     var disabled: Boolean
+
+    /** 点击该元素时触发折叠，值可以是 CSS 选择器、DOM 元素、或 [JQ 对象](/docs/2/functions/jq)。默认为点击整个 header 区域触发 */
+    var trigger: String | org.scalajs.dom.HTMLElement | Unit
   }
 }
