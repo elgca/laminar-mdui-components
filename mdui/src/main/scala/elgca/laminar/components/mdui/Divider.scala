@@ -21,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Divider extends WebComponent("mdui-divider") {
 
-  @JSImport("mdui/components/divider/divider.js", JSImport.Namespace)
+  @JSImport("mdui/components/divider.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Divider.type

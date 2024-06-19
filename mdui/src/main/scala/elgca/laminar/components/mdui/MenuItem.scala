@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object MenuItem extends WebComponent("mdui-menu-item") {
 
-  @JSImport("mdui/components/menu-item/menu-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/menu-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = MenuItem.type

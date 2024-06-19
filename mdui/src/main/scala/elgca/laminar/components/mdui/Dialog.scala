@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Dialog extends WebComponent("mdui-dialog") {
 
-  @JSImport("mdui/components/dialog/dialog.js", JSImport.Namespace)
+  @JSImport("mdui/components/dialog.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Dialog.type

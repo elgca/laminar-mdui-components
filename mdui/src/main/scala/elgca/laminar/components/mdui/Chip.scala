@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Chip extends WebComponent("mdui-chip") {
 
-  @JSImport("mdui/components/chip/chip.js", JSImport.Namespace)
+  @JSImport("mdui/components/chip.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Chip.type

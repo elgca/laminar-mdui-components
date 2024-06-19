@@ -26,7 +26,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Select extends WebComponent("mdui-select") with ControlledInput {
 
-  @JSImport("mdui/components/select/select.js", JSImport.Namespace)
+  @JSImport("mdui/components/select.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Select.type

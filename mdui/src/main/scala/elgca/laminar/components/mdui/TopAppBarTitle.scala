@@ -26,7 +26,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object TopAppBarTitle extends WebComponent("mdui-top-app-bar-title") {
 
-  @JSImport("mdui/components/top-app-bar-title/top-app-bar-title.js", JSImport.Namespace)
+  @JSImport("mdui/components/top-app-bar-title.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = TopAppBarTitle.type

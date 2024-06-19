@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Avatar extends WebComponent("mdui-avatar") {
 
-  @JSImport("mdui/components/avatar/avatar.js", JSImport.Namespace)
+  @JSImport("mdui/components/avatar.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Avatar.type

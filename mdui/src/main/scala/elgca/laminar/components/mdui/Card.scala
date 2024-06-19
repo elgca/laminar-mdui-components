@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Card extends WebComponent("mdui-card") {
 
-  @JSImport("mdui/components/card/card.js", JSImport.Namespace)
+  @JSImport("mdui/components/card.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Card.type

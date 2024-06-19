@@ -19,7 +19,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object NavigationDrawer extends WebComponent("mdui-navigation-drawer") {
 
-  @JSImport("mdui/components/navigation-drawer/navigation-drawer.js", JSImport.Namespace)
+  @JSImport("mdui/components/navigation-drawer.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = NavigationDrawer.type

@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Badge extends WebComponent("mdui-badge") {
 
-  @JSImport("mdui/components/badge/badge.js", JSImport.Namespace)
+  @JSImport("mdui/components/badge.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Badge.type

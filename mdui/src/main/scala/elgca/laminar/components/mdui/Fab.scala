@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Fab extends WebComponent("mdui-fab") {
 
-  @JSImport("mdui/components/fab/fab.js", JSImport.Namespace)
+  @JSImport("mdui/components/fab.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Fab.type

@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object CollapseItem extends WebComponent("mdui-collapse-item") {
 
-  @JSImport("mdui/components/collapse-item/collapse-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/collapse-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = CollapseItem.type

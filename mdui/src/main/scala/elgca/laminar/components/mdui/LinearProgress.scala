@@ -22,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object LinearProgress extends WebComponent("mdui-linear-progress") {
 
-  @JSImport("mdui/components/linear-progress/linear-progress.js", JSImport.Namespace)
+  @JSImport("mdui/components/linear-progress.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = LinearProgress.type

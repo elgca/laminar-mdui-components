@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Checkbox extends WebComponent("mdui-checkbox") with ControlledInput {
 
-  @JSImport("mdui/components/checkbox/checkbox.js", JSImport.Namespace)
+  @JSImport("mdui/components/checkbox.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Checkbox.type

@@ -244,44 +244,8 @@ class WebComponentsTranslator(
   /**
    * Manually sourced from https://github.com/shoelace-style/shoelace/tree/next/src/events because custom-elements.json does not seem to contain this data.
    */
-  lazy val customEventTypes: List[Def.CustomEventType] = Nil
-  List(
-    CustomEventType("SlCopyEvent")(
-      "value" -> "string",
-    ),
-    CustomEventType("SlErrorEvent")(
-      "status" -> "number | undefined",
-    ),
-    CustomEventType("SlHoverEvent")(
-      "phase" -> "'start' | 'move' | 'end'",
-      "value" -> "number",
-    ),
-    CustomEventType("SlMutationEvent")(
-      "mutationList" -> "MutationRecord[]",
-    ),
-    CustomEventType("SlRequestCloseEvent")(
-      "source" -> "'close-button' | 'keyboard' | 'overlay'",
-    ),
-    CustomEventType("SlResizeEvent")(
-      "entries" -> "ResizeObserverEntry[]",
-    ),
-    CustomEventType("SlSelectEvent")(
-      "item" -> "SlMenuItem",
-    ),
-    CustomEventType("SlSelectionChangeEvent")(
-      "selection" -> "SlTreeItem[]",
-    ),
-    CustomEventType("SlSlideChangeEvent")(
-      "index" -> "number",
-      "slide" -> "SlCarouselItem",
-    ),
-    CustomEventType("SlTabHideEvent")(
-      "name" -> "string",
-    ),
-    CustomEventType("SlTabShowEvent")(
-      "name" -> "string",
-    ),
-  )
+  lazy val customEventTypes: List[Def.CustomEventType] =
+    Nil // Not needed for MDUI?
 
   private val cssPropTypes = List(
     // Length
@@ -404,7 +368,7 @@ class WebComponentsTranslator(
 
   def importPath(elementDeclaration: M.Declaration): String = {
     val moduleName = elementDeclaration.pureTagName
-    s"${jsImportBasePath}/${moduleName}/${moduleName}.js"
+    s"${jsImportBasePath}/${moduleName}.js"
   }
 
   def events(elementDeclaration: M.Declaration): List[Def.Event] =

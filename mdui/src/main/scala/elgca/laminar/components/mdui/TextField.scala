@@ -22,7 +22,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object TextField extends WebComponent("mdui-text-field") {
 
-  @JSImport("mdui/components/text-field/text-field.js", JSImport.Namespace)
+  @JSImport("mdui/components/text-field.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = TextField.type

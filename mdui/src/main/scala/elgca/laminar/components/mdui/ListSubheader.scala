@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object ListSubheader extends WebComponent("mdui-list-subheader") {
 
-  @JSImport("mdui/components/list-subheader/list-subheader.js", JSImport.Namespace)
+  @JSImport("mdui/components/list-subheader.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = ListSubheader.type

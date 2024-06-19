@@ -29,7 +29,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Dropdown extends WebComponent("mdui-dropdown") {
 
-  @JSImport("mdui/components/dropdown/dropdown.js", JSImport.Namespace)
+  @JSImport("mdui/components/dropdown.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Dropdown.type

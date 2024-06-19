@@ -27,7 +27,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object NavigationBarItem extends WebComponent("mdui-navigation-bar-item") {
 
-  @JSImport("mdui/components/navigation-bar-item/navigation-bar-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/navigation-bar-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = NavigationBarItem.type

@@ -21,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object CircularProgress extends WebComponent("mdui-circular-progress") {
 
-  @JSImport("mdui/components/circular-progress/circular-progress.js", JSImport.Namespace)
+  @JSImport("mdui/components/circular-progress.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = CircularProgress.type

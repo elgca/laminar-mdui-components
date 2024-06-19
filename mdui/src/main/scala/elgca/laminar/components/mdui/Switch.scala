@@ -24,7 +24,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Switch extends WebComponent("mdui-switch") with ControlledInput {
 
-  @JSImport("mdui/components/switch/switch.js", JSImport.Namespace)
+  @JSImport("mdui/components/switch.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Switch.type

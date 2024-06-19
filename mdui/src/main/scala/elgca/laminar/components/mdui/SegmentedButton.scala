@@ -26,7 +26,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object SegmentedButton extends WebComponent("mdui-segmented-button") {
 
-  @JSImport("mdui/components/segmented-button/segmented-button.js", JSImport.Namespace)
+  @JSImport("mdui/components/segmented-button.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = SegmentedButton.type

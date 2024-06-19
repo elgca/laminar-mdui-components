@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object List extends WebComponent("mdui-list") {
 
-  @JSImport("mdui/components/list/list.js", JSImport.Namespace)
+  @JSImport("mdui/components/list.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = List.type

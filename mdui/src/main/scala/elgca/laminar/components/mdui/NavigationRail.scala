@@ -27,7 +27,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object NavigationRail extends WebComponent("mdui-navigation-rail") {
 
-  @JSImport("mdui/components/navigation-rail/navigation-rail.js", JSImport.Namespace)
+  @JSImport("mdui/components/navigation-rail.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = NavigationRail.type

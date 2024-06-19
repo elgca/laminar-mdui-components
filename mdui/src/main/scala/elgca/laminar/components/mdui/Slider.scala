@@ -21,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Slider extends WebComponent("mdui-slider") {
 
-  @JSImport("mdui/components/slider/slider.js", JSImport.Namespace)
+  @JSImport("mdui/components/slider.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Slider.type

@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Tooltip extends WebComponent("mdui-tooltip") {
 
-  @JSImport("mdui/components/tooltip/tooltip.js", JSImport.Namespace)
+  @JSImport("mdui/components/tooltip.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Tooltip.type

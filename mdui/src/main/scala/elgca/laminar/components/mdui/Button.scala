@@ -23,7 +23,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Button extends WebComponent("mdui-button") {
 
-  @JSImport("mdui/components/button/button.js", JSImport.Namespace)
+  @JSImport("mdui/components/button.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Button.type

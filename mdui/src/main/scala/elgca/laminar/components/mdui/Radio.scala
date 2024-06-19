@@ -25,7 +25,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Radio extends WebComponent("mdui-radio") {
 
-  @JSImport("mdui/components/radio/radio.js", JSImport.Namespace)
+  @JSImport("mdui/components/radio.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Radio.type

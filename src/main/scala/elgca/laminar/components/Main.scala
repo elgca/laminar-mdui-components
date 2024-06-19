@@ -3,10 +3,11 @@ package elgca.laminar.components
 case class Config(
   frameworkName: String,
   onlineSourceRoot: String,
-  customElementsJsonPath: String,
+  customElementsJsonPath: String = "",
   baseOutputDirectoryPath: String,
   baseOutputPackagePath: String,
   jsImportBasePath: String,
+  customImport: Seq[String] = Nil, // custom import
 )
 
 @main def start(): Unit = {
@@ -22,4 +23,12 @@ case class Config(
     jsImportBasePath = "mdui/components",
   )
   WebComponentsGenerator(config).generate()
+
+  // 图标太多了
+  MduiIconGenerator(
+    config.copy(jsImportBasePath = "@mdui/icons"),
+    forceScalaName = { case "mdui-icon-insert-chart--outlined" =>
+      "IconInsertChart2Outlined"
+    },
+  ).generate()
 }

@@ -30,7 +30,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object Tabs extends WebComponent("mdui-tabs") {
 
-  @JSImport("mdui/components/tabs/tabs.js", JSImport.Namespace)
+  @JSImport("mdui/components/tabs.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = Tabs.type

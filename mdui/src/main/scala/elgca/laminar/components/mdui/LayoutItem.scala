@@ -26,7 +26,7 @@ import scala.scalajs.js.annotation.JSImport
   */
 object LayoutItem extends WebComponent("mdui-layout-item") {
 
-  @JSImport("mdui/components/layout-item/layout-item.js", JSImport.Namespace)
+  @JSImport("mdui/components/layout-item.js", JSImport.Namespace)
   @js.native object RawImport extends js.Object
 
   type Self = LayoutItem.type
