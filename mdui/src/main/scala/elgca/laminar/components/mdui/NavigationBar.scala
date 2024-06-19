@@ -91,13 +91,13 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
 
     object labelVisibility extends HtmlAttr[String]("label-visibility", StringAsIsCodec) {
 
-      lazy val auto: HtmlAttrSetter[String] = autoCapitalize("auto")
+      lazy val auto: HtmlAttrSetter[String] = labelVisibility("auto")
 
-      lazy val selected: HtmlAttrSetter[String] = autoCapitalize("selected")
+      lazy val selected: HtmlAttrSetter[String] = labelVisibility("selected")
 
-      lazy val labeled: HtmlAttrSetter[String] = autoCapitalize("labeled")
+      lazy val labeled: HtmlAttrSetter[String] = labelVisibility("labeled")
 
-      lazy val unlabeled: HtmlAttrSetter[String] = autoCapitalize("unlabeled")
+      lazy val unlabeled: HtmlAttrSetter[String] = labelVisibility("unlabeled")
     }
   }
 

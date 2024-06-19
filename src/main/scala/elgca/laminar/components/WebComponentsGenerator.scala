@@ -466,7 +466,7 @@ class WebComponentsGenerator(
               val valueName = st.scalifyName(value)
               line()
               line(
-                s"lazy val ${valueName}: HtmlAttrSetter[String] = autoCapitalize(${repr(value)})",
+                s"lazy val ${valueName}: HtmlAttrSetter[String] = ${commonKeyName}(${repr(value)})",
               )
             }
           }

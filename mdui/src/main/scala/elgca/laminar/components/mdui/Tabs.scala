@@ -85,36 +85,36 @@ object Tabs extends WebComponent("mdui-tabs") {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val primary: HtmlAttrSetter[String] = autoCapitalize("primary")
+      lazy val primary: HtmlAttrSetter[String] = variant("primary")
 
-      lazy val secondary: HtmlAttrSetter[String] = autoCapitalize("secondary")
+      lazy val secondary: HtmlAttrSetter[String] = variant("secondary")
     }
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val topStart: HtmlAttrSetter[String] = autoCapitalize("top-start")
+      lazy val topStart: HtmlAttrSetter[String] = placement("top-start")
 
-      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+      lazy val top: HtmlAttrSetter[String] = placement("top")
 
-      lazy val topEnd: HtmlAttrSetter[String] = autoCapitalize("top-end")
+      lazy val topEnd: HtmlAttrSetter[String] = placement("top-end")
 
-      lazy val bottomStart: HtmlAttrSetter[String] = autoCapitalize("bottom-start")
+      lazy val bottomStart: HtmlAttrSetter[String] = placement("bottom-start")
 
-      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val bottomEnd: HtmlAttrSetter[String] = autoCapitalize("bottom-end")
+      lazy val bottomEnd: HtmlAttrSetter[String] = placement("bottom-end")
 
-      lazy val leftStart: HtmlAttrSetter[String] = autoCapitalize("left-start")
+      lazy val leftStart: HtmlAttrSetter[String] = placement("left-start")
 
-      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+      lazy val left: HtmlAttrSetter[String] = placement("left")
 
-      lazy val leftEnd: HtmlAttrSetter[String] = autoCapitalize("left-end")
+      lazy val leftEnd: HtmlAttrSetter[String] = placement("left-end")
 
-      lazy val rightStart: HtmlAttrSetter[String] = autoCapitalize("right-start")
+      lazy val rightStart: HtmlAttrSetter[String] = placement("right-start")
 
-      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+      lazy val right: HtmlAttrSetter[String] = placement("right")
 
-      lazy val rightEnd: HtmlAttrSetter[String] = autoCapitalize("right-end")
+      lazy val rightEnd: HtmlAttrSetter[String] = placement("right-end")
     }
   }
 

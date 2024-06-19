@@ -94,13 +94,13 @@ object TopAppBar extends WebComponent("mdui-top-app-bar") {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val centerAligned: HtmlAttrSetter[String] = autoCapitalize("center-aligned")
+      lazy val centerAligned: HtmlAttrSetter[String] = variant("center-aligned")
 
-      lazy val small: HtmlAttrSetter[String] = autoCapitalize("small")
+      lazy val small: HtmlAttrSetter[String] = variant("small")
 
-      lazy val medium: HtmlAttrSetter[String] = autoCapitalize("medium")
+      lazy val medium: HtmlAttrSetter[String] = variant("medium")
 
-      lazy val large: HtmlAttrSetter[String] = autoCapitalize("large")
+      lazy val large: HtmlAttrSetter[String] = variant("large")
     }
   }
 

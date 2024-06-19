@@ -279,38 +279,38 @@ object TextField extends WebComponent("mdui-text-field") {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val filled: HtmlAttrSetter[String] = autoCapitalize("filled")
+      lazy val filled: HtmlAttrSetter[String] = variant("filled")
 
-      lazy val outlined: HtmlAttrSetter[String] = autoCapitalize("outlined")
+      lazy val outlined: HtmlAttrSetter[String] = variant("outlined")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
 
-      lazy val text: HtmlAttrSetter[String] = autoCapitalize("text")
+      lazy val text: HtmlAttrSetter[String] = `type`("text")
 
-      lazy val number: HtmlAttrSetter[String] = autoCapitalize("number")
+      lazy val number: HtmlAttrSetter[String] = `type`("number")
 
-      lazy val password: HtmlAttrSetter[String] = autoCapitalize("password")
+      lazy val password: HtmlAttrSetter[String] = `type`("password")
 
-      lazy val url: HtmlAttrSetter[String] = autoCapitalize("url")
+      lazy val url: HtmlAttrSetter[String] = `type`("url")
 
-      lazy val email: HtmlAttrSetter[String] = autoCapitalize("email")
+      lazy val email: HtmlAttrSetter[String] = `type`("email")
 
-      lazy val search: HtmlAttrSetter[String] = autoCapitalize("search")
+      lazy val search: HtmlAttrSetter[String] = `type`("search")
 
-      lazy val tel: HtmlAttrSetter[String] = autoCapitalize("tel")
+      lazy val tel: HtmlAttrSetter[String] = `type`("tel")
 
-      lazy val hidden: HtmlAttrSetter[String] = autoCapitalize("hidden")
+      lazy val hidden: HtmlAttrSetter[String] = `type`("hidden")
 
-      lazy val date: HtmlAttrSetter[String] = autoCapitalize("date")
+      lazy val date: HtmlAttrSetter[String] = `type`("date")
 
-      lazy val datetimeLocal: HtmlAttrSetter[String] = autoCapitalize("datetime-local")
+      lazy val datetimeLocal: HtmlAttrSetter[String] = `type`("datetime-local")
 
-      lazy val month: HtmlAttrSetter[String] = autoCapitalize("month")
+      lazy val month: HtmlAttrSetter[String] = `type`("month")
 
-      lazy val time: HtmlAttrSetter[String] = autoCapitalize("time")
+      lazy val time: HtmlAttrSetter[String] = `type`("time")
 
-      lazy val week: HtmlAttrSetter[String] = autoCapitalize("week")
+      lazy val week: HtmlAttrSetter[String] = `type`("week")
     }
   }
 

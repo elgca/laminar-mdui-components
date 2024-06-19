@@ -241,53 +241,53 @@ object SegmentedButton extends WebComponent("mdui-segmented-button") {
 
     object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
 
-      lazy val alternate: HtmlAttrSetter[String] = autoCapitalize("alternate")
+      lazy val alternate: HtmlAttrSetter[String] = rel("alternate")
 
-      lazy val author: HtmlAttrSetter[String] = autoCapitalize("author")
+      lazy val author: HtmlAttrSetter[String] = rel("author")
 
-      lazy val bookmark: HtmlAttrSetter[String] = autoCapitalize("bookmark")
+      lazy val bookmark: HtmlAttrSetter[String] = rel("bookmark")
 
-      lazy val external: HtmlAttrSetter[String] = autoCapitalize("external")
+      lazy val external: HtmlAttrSetter[String] = rel("external")
 
-      lazy val help: HtmlAttrSetter[String] = autoCapitalize("help")
+      lazy val help: HtmlAttrSetter[String] = rel("help")
 
-      lazy val license: HtmlAttrSetter[String] = autoCapitalize("license")
+      lazy val license: HtmlAttrSetter[String] = rel("license")
 
-      lazy val me: HtmlAttrSetter[String] = autoCapitalize("me")
+      lazy val me: HtmlAttrSetter[String] = rel("me")
 
-      lazy val next: HtmlAttrSetter[String] = autoCapitalize("next")
+      lazy val next: HtmlAttrSetter[String] = rel("next")
 
-      lazy val nofollow: HtmlAttrSetter[String] = autoCapitalize("nofollow")
+      lazy val nofollow: HtmlAttrSetter[String] = rel("nofollow")
 
-      lazy val noreferrer: HtmlAttrSetter[String] = autoCapitalize("noreferrer")
+      lazy val noreferrer: HtmlAttrSetter[String] = rel("noreferrer")
 
-      lazy val opener: HtmlAttrSetter[String] = autoCapitalize("opener")
+      lazy val opener: HtmlAttrSetter[String] = rel("opener")
 
-      lazy val prev: HtmlAttrSetter[String] = autoCapitalize("prev")
+      lazy val prev: HtmlAttrSetter[String] = rel("prev")
 
-      lazy val search: HtmlAttrSetter[String] = autoCapitalize("search")
+      lazy val search: HtmlAttrSetter[String] = rel("search")
 
-      lazy val tag: HtmlAttrSetter[String] = autoCapitalize("tag")
+      lazy val tag: HtmlAttrSetter[String] = rel("tag")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
 
-      lazy val submit: HtmlAttrSetter[String] = autoCapitalize("submit")
+      lazy val submit: HtmlAttrSetter[String] = `type`("submit")
 
-      lazy val reset: HtmlAttrSetter[String] = autoCapitalize("reset")
+      lazy val reset: HtmlAttrSetter[String] = `type`("reset")
 
-      lazy val button: HtmlAttrSetter[String] = autoCapitalize("button")
+      lazy val button: HtmlAttrSetter[String] = `type`("button")
     }
 
     object target extends HtmlAttr[String]("target", StringAsIsCodec) {
 
-      lazy val _blank: HtmlAttrSetter[String] = autoCapitalize("_blank")
+      lazy val _blank: HtmlAttrSetter[String] = target("_blank")
 
-      lazy val _parent: HtmlAttrSetter[String] = autoCapitalize("_parent")
+      lazy val _parent: HtmlAttrSetter[String] = target("_parent")
 
-      lazy val _self: HtmlAttrSetter[String] = autoCapitalize("_self")
+      lazy val _self: HtmlAttrSetter[String] = target("_self")
 
-      lazy val _top: HtmlAttrSetter[String] = autoCapitalize("_top")
+      lazy val _top: HtmlAttrSetter[String] = target("_top")
     }
   }
 

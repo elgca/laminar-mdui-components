@@ -83,18 +83,18 @@ object NavigationRail extends WebComponent("mdui-navigation-rail") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+      lazy val left: HtmlAttrSetter[String] = placement("left")
 
-      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+      lazy val right: HtmlAttrSetter[String] = placement("right")
     }
 
     object alignment extends HtmlAttr[String]("alignment", StringAsIsCodec) {
 
-      lazy val start: HtmlAttrSetter[String] = autoCapitalize("start")
+      lazy val start: HtmlAttrSetter[String] = alignment("start")
 
-      lazy val center: HtmlAttrSetter[String] = autoCapitalize("center")
+      lazy val center: HtmlAttrSetter[String] = alignment("center")
 
-      lazy val end: HtmlAttrSetter[String] = autoCapitalize("end")
+      lazy val end: HtmlAttrSetter[String] = alignment("end")
     }
   }
 

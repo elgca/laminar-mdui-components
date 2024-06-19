@@ -59,13 +59,13 @@ object LayoutItem extends WebComponent("mdui-layout-item") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+      lazy val top: HtmlAttrSetter[String] = placement("top")
 
-      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+      lazy val left: HtmlAttrSetter[String] = placement("left")
 
-      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+      lazy val right: HtmlAttrSetter[String] = placement("right")
     }
   }
 
