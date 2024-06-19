@@ -205,7 +205,7 @@ object TextField extends WebComponent("mdui-text-field") {
     * * `off`：禁用浏览器的自动填充，使用者必须输入他们想要输入的所有内容。或者网页提供了自己的自动填充方法
     * * `on`：浏览器根据用户之前输入的内容或者习惯，在用户输入的时候给出相应输入提示
     */
-  lazy val autoComplete: HtmlAttr[String] = stringAttr("autocomplete")
+  lazy val autoComplete: CommonKeys.autoComplete.type = CommonKeys.autoComplete
 
   /**
     * `input` 元素的 `enterkeyhint` 属性，用于定制虚拟键盘上的 Enter 键的显示文本或图标。具体显示效果取决于用户使用的设备和语言。可选值包括：
@@ -218,7 +218,7 @@ object TextField extends WebComponent("mdui-text-field") {
     * * `search`：导航到搜索结果
     * * `send`：发送文本信息
     */
-  lazy val enterkeyhint: HtmlAttr[String] = stringAttr("enterkeyhint")
+  lazy val enterkeyhint: CommonKeys.enterkeyhint.type = CommonKeys.enterkeyhint
 
   /** 是否启用拼写检查 */
   lazy val spellCheck: HtmlAttr[Boolean] = boolAttr("spellcheck")
@@ -266,6 +266,13 @@ object TextField extends WebComponent("mdui-text-field") {
     import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
     import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
 
+    object autoComplete extends HtmlAttr[String]("autocomplete", StringAsIsCodec) {
+
+      lazy val off: HtmlAttrSetter[String] = autoComplete("off")
+
+      lazy val on: HtmlAttrSetter[String] = autoComplete("on")
+    }
+
     object autoCapitalize extends HtmlAttr[String]("autocapitalize", StringAsIsCodec) {
 
       lazy val none: HtmlAttrSetter[String] = autoCapitalize("none")
@@ -277,11 +284,47 @@ object TextField extends WebComponent("mdui-text-field") {
       lazy val characters: HtmlAttrSetter[String] = autoCapitalize("characters")
     }
 
+    object inputMode extends HtmlAttr[String]("inputmode", StringAsIsCodec) {
+
+      lazy val none: HtmlAttrSetter[String] = inputMode("none")
+
+      lazy val text: HtmlAttrSetter[String] = inputMode("text")
+
+      lazy val decimal: HtmlAttrSetter[String] = inputMode("decimal")
+
+      lazy val numeric: HtmlAttrSetter[String] = inputMode("numeric")
+
+      lazy val tel: HtmlAttrSetter[String] = inputMode("tel")
+
+      lazy val search: HtmlAttrSetter[String] = inputMode("search")
+
+      lazy val email: HtmlAttrSetter[String] = inputMode("email")
+
+      lazy val url: HtmlAttrSetter[String] = inputMode("url")
+    }
+
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
       lazy val filled: HtmlAttrSetter[String] = variant("filled")
 
       lazy val outlined: HtmlAttrSetter[String] = variant("outlined")
+    }
+
+    object enterkeyhint extends HtmlAttr[String]("enterkeyhint", StringAsIsCodec) {
+
+      lazy val enter: HtmlAttrSetter[String] = enterkeyhint("enter")
+
+      lazy val done: HtmlAttrSetter[String] = enterkeyhint("done")
+
+      lazy val go: HtmlAttrSetter[String] = enterkeyhint("go")
+
+      lazy val next: HtmlAttrSetter[String] = enterkeyhint("next")
+
+      lazy val previous: HtmlAttrSetter[String] = enterkeyhint("previous")
+
+      lazy val search: HtmlAttrSetter[String] = enterkeyhint("search")
+
+      lazy val send: HtmlAttrSetter[String] = enterkeyhint("send")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {

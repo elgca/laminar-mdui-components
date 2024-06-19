@@ -44,12 +44,12 @@ class WebComponentsGenerator(
   lazy val useScalaJsUnionType: Boolean = true
 
   lazy val commonStringAttrs: List[String] = List(
-    "size",
-    "target",
-    "autocapitalize",
+//    "size",
+//    "target",
+//    "autocapitalize",
 //    "variant",
-    "placement",
-    "inputmode",
+//    "placement",
+//    "inputmode",
   )
 
   // #TODO[API] Not a fan of this very Shoelace-specific thing being here.
@@ -398,6 +398,7 @@ class WebComponentsGenerator(
       line()
       val needCommonKeys = attr.jsTypes.forall {
         case Def.JsStringConstantType(_) => true
+        case Def.JsUndefinedType         => true
         case other                       => false
       }
 
@@ -408,9 +409,10 @@ class WebComponentsGenerator(
         val commonKeyName =
           commonStringAttrScalaName(element.tagName, attr.scalaName)
 
-        val values = attr.jsTypes.map { case Def.JsStringConstantType(value) =>
-          value
-        }
+        val values = attr.jsTypes.map {
+          case Def.JsStringConstantType(value) => value
+          case Def.JsUndefinedType             => null
+        }.filter(_ != null)
         assert(
           !commonKeys.contains(commonKeyName),
           s"Duplicate CommonKeysName:${commonKeyName} tag: ${element.tagName} before: ${commonKeys
@@ -451,7 +453,7 @@ class WebComponentsGenerator(
     // create CommonKeys
     if (commonKeys.nonEmpty) {
       // 通过这里创建CommonKeys
-      line()
+      line("// -- CommonKeys --")
       enter("object CommonKeys extends CommonTypes {", "}") {
         line("import com.raquo.laminar.codecs.StringAsIsCodec")
         line("import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}")
