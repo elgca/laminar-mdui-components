@@ -24,7 +24,6 @@ case class Config(
   )
   WebComponentsGenerator(config).generate()
 
-  // 图标太多了
   MduiIconGenerator(
     config.copy(jsImportBasePath = "@mdui/icons"),
     forceScalaName = { case "mdui-icon-insert-chart--outlined" =>

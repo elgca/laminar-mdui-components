@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mdui/icons": "^1.0.2",
     "mdui": "^2.1.1"
   }
 }

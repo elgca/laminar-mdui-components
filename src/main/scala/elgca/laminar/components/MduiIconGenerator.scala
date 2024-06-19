@@ -55,18 +55,73 @@ class MduiIconGenerator(
       throw new Exception("Duplicate ScalaName, please Change scalifyName")
     }
 
-    //      .map(x => x.)
-    iconJs.foreach { case (tagName, scalaName, importPath) =>
-      println((tagName, scalaName, importPath))
-      printIcon(tagName, scalaName, importPath)
-      val fileName = s"${scalaName}.scala"
-      val output   = getOutput()
-      writeToFile(
-        packagePath = componentsPackagePath,
-        fileName = fileName,
-        fileContent = output,
-      )
+    line(s"package ${componentsPackagePath}")
+    line(s"package icon")
+    line()
+    line("import com.raquo.laminar.api.L")
+    line("import com.raquo.laminar.tags.CustomHtmlTag")
+    line("import org.scalajs.dom")
+    line()
+    line("import scala.scalajs.js")
+    line("import scala.scalajs.js.annotation.JSImport")
+    line()
+    line(
+      s"// This file is generated at by ${codeFileName}",
+    )
+//    enter(
+//      s"object Icons {",
+//      "}",
+//    )
+    {
+
+      iconJs.foreach { case (tagName, scalaName, importPath) =>
+        line()
+        enter(
+          s"object ${scalaName} extends WebComponent(${repr(tagName)}) {",
+          "}",
+        ) {
+          printComponentRawImport(importPath)
+          val componentTraitName = scalaName + "Component"
+          val elementBaseType    = "dom.HTMLElement"
+          val showRawComponent   = false
+          printRefType(
+            scalaName,
+            componentTraitName,
+            showRawComponent,
+            elementBaseType,
+          )
+        }
+      }
+//      printComponentRawImport(jsPath)
+//      val componentTraitName = scalaName + "Component"
+//      val elementBaseType = "dom.HTMLElement"
+//      val showRawComponent = false
+//      printRefType(
+//        scalaName,
+//        componentTraitName,
+//        showRawComponent,
+//        elementBaseType,
+//      )
     }
+
+    val output = getOutput()
+    writeToFile(
+      packagePath = componentsPackagePath,
+      fileName = "Icons.scala",
+      fileContent = output,
+    )
+
+//    iconJs.foreach { case (tagName, scalaName, importPath) =>
+//      println((tagName, scalaName, importPath))
+//      printIcon(tagName, scalaName, importPath)
+//      val fileName = s"${scalaName}.scala"
+//      val output   = getOutput()
+//      writeToFile(
+//        packagePath = componentsPackagePath,
+//        fileName = fileName,
+//        fileContent = output,
+//      )
+//    }
   }
 
   def printIcon(tagName: String, scalaName: String, jsPath: String): Unit = {
