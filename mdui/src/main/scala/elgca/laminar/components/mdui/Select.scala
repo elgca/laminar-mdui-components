@@ -150,6 +150,28 @@ object Select extends WebComponent("mdui-select") with ControlledInput {
   /** 元素在使用 Tab 键切换焦点时的顺序 */
   lazy val tabIndex: HtmlAttr[Int] = intAttr("tabindex")
 
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val filled: HtmlAttrSetter[String] = autoCapitalize("filled")
+
+      lazy val outlined: HtmlAttrSetter[String] = autoCapitalize("outlined")
+    }
+
+    object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
+
+      lazy val auto: HtmlAttrSetter[String] = autoCapitalize("auto")
+
+      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+
+      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+    }
+  }
+
 
   // -- Props --
 

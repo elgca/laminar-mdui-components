@@ -117,7 +117,7 @@ object Fab extends WebComponent("mdui-fab") {
     * 
     * **Note**：仅在指定了 `href` 属性时可用。
     */
-  lazy val rel: HtmlAttr[String] = stringAttr("rel")
+  lazy val rel: CommonKeys.rel.type = CommonKeys.rel
 
   /** 是否在页面加载完成后自动获取焦点 */
   lazy val autoFocus: HtmlAttr[Boolean] = boolAttr("autofocus")
@@ -166,7 +166,7 @@ object Fab extends WebComponent("mdui-fab") {
     * 
     * **Note**：仅在未指定 `href` 属性时，此属性才有效。
     */
-  lazy val `type`: HtmlAttr[String] = stringAttr("type")
+  lazy val `type`: CommonKeys.`type`.type = CommonKeys.`type`
 
   lazy val typ: HtmlAttr[String] = `type`
 
@@ -237,6 +237,83 @@ object Fab extends WebComponent("mdui-fab") {
     * **Note**：仅在未设置 `href` 属性且 `type="submit"` 时，此属性才有效。
     */
   lazy val formTarget: HtmlAttr[String] = stringAttr("formtarget")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object size extends HtmlAttr[String]("size", StringAsIsCodec) {
+
+      lazy val normal: HtmlAttrSetter[String] = autoCapitalize("normal")
+
+      lazy val small: HtmlAttrSetter[String] = autoCapitalize("small")
+
+      lazy val large: HtmlAttrSetter[String] = autoCapitalize("large")
+    }
+
+    object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
+
+      lazy val alternate: HtmlAttrSetter[String] = autoCapitalize("alternate")
+
+      lazy val author: HtmlAttrSetter[String] = autoCapitalize("author")
+
+      lazy val bookmark: HtmlAttrSetter[String] = autoCapitalize("bookmark")
+
+      lazy val external: HtmlAttrSetter[String] = autoCapitalize("external")
+
+      lazy val help: HtmlAttrSetter[String] = autoCapitalize("help")
+
+      lazy val license: HtmlAttrSetter[String] = autoCapitalize("license")
+
+      lazy val me: HtmlAttrSetter[String] = autoCapitalize("me")
+
+      lazy val next: HtmlAttrSetter[String] = autoCapitalize("next")
+
+      lazy val nofollow: HtmlAttrSetter[String] = autoCapitalize("nofollow")
+
+      lazy val noreferrer: HtmlAttrSetter[String] = autoCapitalize("noreferrer")
+
+      lazy val opener: HtmlAttrSetter[String] = autoCapitalize("opener")
+
+      lazy val prev: HtmlAttrSetter[String] = autoCapitalize("prev")
+
+      lazy val search: HtmlAttrSetter[String] = autoCapitalize("search")
+
+      lazy val tag: HtmlAttrSetter[String] = autoCapitalize("tag")
+    }
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val primary: HtmlAttrSetter[String] = autoCapitalize("primary")
+
+      lazy val surface: HtmlAttrSetter[String] = autoCapitalize("surface")
+
+      lazy val secondary: HtmlAttrSetter[String] = autoCapitalize("secondary")
+
+      lazy val tertiary: HtmlAttrSetter[String] = autoCapitalize("tertiary")
+    }
+
+    object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
+
+      lazy val submit: HtmlAttrSetter[String] = autoCapitalize("submit")
+
+      lazy val reset: HtmlAttrSetter[String] = autoCapitalize("reset")
+
+      lazy val button: HtmlAttrSetter[String] = autoCapitalize("button")
+    }
+
+    object target extends HtmlAttr[String]("target", StringAsIsCodec) {
+
+      lazy val _blank: HtmlAttrSetter[String] = autoCapitalize("_blank")
+
+      lazy val _parent: HtmlAttrSetter[String] = autoCapitalize("_parent")
+
+      lazy val _self: HtmlAttrSetter[String] = autoCapitalize("_self")
+
+      lazy val _top: HtmlAttrSetter[String] = autoCapitalize("_top")
+    }
+  }
 
 
   // -- Props --

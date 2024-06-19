@@ -47,7 +47,7 @@ class WebComponentsGenerator(
     "size",
     "target",
     "autocapitalize",
-    "variant",
+//    "variant",
     "placement",
     "inputmode",
   )
@@ -308,7 +308,9 @@ class WebComponentsGenerator(
       line(s"import ${eventTypesPackagePath}.${eventTypesObjectName}.*")
     }
     if eventTypesPackagePath != componentsPackagePath then {
-      line(s"import ${helpersPackagePath}.{CommonKeys, WebComponent}")
+      // 这里修改
+      // 因为修改了对应代码，我不再需要CommonKeys了
+      line(s"import ${helpersPackagePath}.WebComponent")
     }
     line("import com.raquo.laminar.api.L")
     if element.cssProperties.nonEmpty then {
@@ -385,14 +387,42 @@ class WebComponentsGenerator(
   }
 
   def printAttributes(element: Def.Element): Unit = {
+    // 这里添加
+    // 替代来自原先手写CommonKeys,在当前组件类内部创建一个CommonKe类
+    // Map[CommonKeysName,(attr.attrName,Values)]
+    val commonKeys = new mutable.HashMap[String, (String, Seq[String])]
     line()
     line()
     line("// -- Attributes --")
     element.attributes.foreach { attr =>
       line()
+      val needCommonKeys = attr.jsTypes.forall {
+        case Def.JsStringConstantType(_) => true
+        case other                       => false
+      }
+
       val scalaTypeStr = st.scalaAttrInputTypeStr(attr, element.tagName)
       blockCommentLines(attr.description)
-      if commonStringAttrs.contains(attr.attrName) && attr.jsTypes.forall {
+      if (needCommonKeys) {
+        // 增加
+        val commonKeyName =
+          commonStringAttrScalaName(element.tagName, attr.scalaName)
+
+        val values = attr.jsTypes.map { case Def.JsStringConstantType(value) =>
+          value
+        }
+        assert(
+          !commonKeys.contains(commonKeyName),
+          s"Duplicate CommonKeysName:${commonKeyName} tag: ${element.tagName} before: ${commonKeys
+              .get(commonKeyName)} current: ${attr.attrName} ${values}",
+        )
+        commonKeys.put(commonKeyName, (attr.attrName, values))
+        line(
+          s"lazy val ${attr.scalaName}: CommonKeys.${commonKeyName}.type = CommonKeys.${commonKeyName}",
+        )
+      } else if commonStringAttrs.contains(
+          attr.attrName,
+        ) && attr.jsTypes.forall {
           case Def.JsStringType | Def.JsStringConstantType(_) |
               Def.JsUndefinedType =>
             true
@@ -416,6 +446,36 @@ class WebComponentsGenerator(
             s"lazy val ${alias}: HtmlAttr[${scalaTypeStr}] = ${attr.scalaName}",
           )
         }
+      }
+    }
+    // create CommonKeys
+    if (commonKeys.nonEmpty) {
+      // 通过这里创建CommonKeys
+      line()
+      enter("object CommonKeys extends CommonTypes {", "}") {
+        line("import com.raquo.laminar.codecs.StringAsIsCodec")
+        line("import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}")
+        line("import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter")
+        commonKeys.foreach { case (commonKeyName, (attrName, values)) =>
+          line()
+          enter(
+            s"object ${commonKeyName} extends HtmlAttr[String](${repr(attrName)}, StringAsIsCodec) {",
+            "}",
+          ) {
+            values.foreach { value =>
+              val valueName = st.scalifyName(value)
+              line()
+              line(
+                s"lazy val ${valueName}: HtmlAttrSetter[String] = autoCapitalize(${repr(value)})",
+              )
+            }
+          }
+        }
+      }
+
+      println(s"CommonKeys for ${element.scalaName}")
+      commonKeys.foreach { case (commonKeyName, (attrName, values)) =>
+        println(s"> ${commonKeyName}[${attrName}] : ${values.mkString("|")}")
       }
     }
   }

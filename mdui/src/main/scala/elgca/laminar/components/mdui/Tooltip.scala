@@ -109,6 +109,56 @@ object Tooltip extends WebComponent("mdui-tooltip") {
   /** 是否显示 tooltip */
   lazy val open: HtmlAttr[Boolean] = boolAttr("open")
 
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val plain: HtmlAttrSetter[String] = autoCapitalize("plain")
+
+      lazy val rich: HtmlAttrSetter[String] = autoCapitalize("rich")
+    }
+
+    object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
+
+      lazy val auto: HtmlAttrSetter[String] = autoCapitalize("auto")
+
+      lazy val topLeft: HtmlAttrSetter[String] = autoCapitalize("top-left")
+
+      lazy val topStart: HtmlAttrSetter[String] = autoCapitalize("top-start")
+
+      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+
+      lazy val topEnd: HtmlAttrSetter[String] = autoCapitalize("top-end")
+
+      lazy val topRight: HtmlAttrSetter[String] = autoCapitalize("top-right")
+
+      lazy val bottomLeft: HtmlAttrSetter[String] = autoCapitalize("bottom-left")
+
+      lazy val bottomStart: HtmlAttrSetter[String] = autoCapitalize("bottom-start")
+
+      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+
+      lazy val bottomEnd: HtmlAttrSetter[String] = autoCapitalize("bottom-end")
+
+      lazy val bottomRight: HtmlAttrSetter[String] = autoCapitalize("bottom-right")
+
+      lazy val leftStart: HtmlAttrSetter[String] = autoCapitalize("left-start")
+
+      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+
+      lazy val leftEnd: HtmlAttrSetter[String] = autoCapitalize("left-end")
+
+      lazy val rightStart: HtmlAttrSetter[String] = autoCapitalize("right-start")
+
+      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+
+      lazy val rightEnd: HtmlAttrSetter[String] = autoCapitalize("right-end")
+    }
+  }
+
 
   // -- Props --
 

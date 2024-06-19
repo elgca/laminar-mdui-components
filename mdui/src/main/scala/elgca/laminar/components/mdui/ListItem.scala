@@ -97,7 +97,7 @@ object ListItem extends WebComponent("mdui-list-item") {
     * * `center`：居中对齐
     * * `end`：底部对齐
     */
-  lazy val alignment: HtmlAttr[String] = stringAttr("alignment")
+  lazy val alignment: CommonKeys.alignment.type = CommonKeys.alignment
 
   /**
     * 链接的目标 URL。
@@ -145,7 +145,7 @@ object ListItem extends WebComponent("mdui-list-item") {
     * 
     * **Note**：仅在指定了 `href` 属性时可用。
     */
-  lazy val rel: HtmlAttr[String] = stringAttr("rel")
+  lazy val rel: CommonKeys.rel.type = CommonKeys.rel
 
   /** 是否在页面加载完成后自动获取焦点 */
   lazy val autoFocus: HtmlAttr[Boolean] = boolAttr("autofocus")
@@ -164,6 +164,63 @@ object ListItem extends WebComponent("mdui-list-item") {
 
   /** 元素在使用 Tab 键切换焦点时的顺序 */
   lazy val tabIndex: HtmlAttr[Int] = intAttr("tabindex")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
+
+      lazy val alternate: HtmlAttrSetter[String] = autoCapitalize("alternate")
+
+      lazy val author: HtmlAttrSetter[String] = autoCapitalize("author")
+
+      lazy val bookmark: HtmlAttrSetter[String] = autoCapitalize("bookmark")
+
+      lazy val external: HtmlAttrSetter[String] = autoCapitalize("external")
+
+      lazy val help: HtmlAttrSetter[String] = autoCapitalize("help")
+
+      lazy val license: HtmlAttrSetter[String] = autoCapitalize("license")
+
+      lazy val me: HtmlAttrSetter[String] = autoCapitalize("me")
+
+      lazy val next: HtmlAttrSetter[String] = autoCapitalize("next")
+
+      lazy val nofollow: HtmlAttrSetter[String] = autoCapitalize("nofollow")
+
+      lazy val noreferrer: HtmlAttrSetter[String] = autoCapitalize("noreferrer")
+
+      lazy val opener: HtmlAttrSetter[String] = autoCapitalize("opener")
+
+      lazy val prev: HtmlAttrSetter[String] = autoCapitalize("prev")
+
+      lazy val search: HtmlAttrSetter[String] = autoCapitalize("search")
+
+      lazy val tag: HtmlAttrSetter[String] = autoCapitalize("tag")
+    }
+
+    object alignment extends HtmlAttr[String]("alignment", StringAsIsCodec) {
+
+      lazy val start: HtmlAttrSetter[String] = autoCapitalize("start")
+
+      lazy val center: HtmlAttrSetter[String] = autoCapitalize("center")
+
+      lazy val end: HtmlAttrSetter[String] = autoCapitalize("end")
+    }
+
+    object target extends HtmlAttr[String]("target", StringAsIsCodec) {
+
+      lazy val _blank: HtmlAttrSetter[String] = autoCapitalize("_blank")
+
+      lazy val _parent: HtmlAttrSetter[String] = autoCapitalize("_parent")
+
+      lazy val _self: HtmlAttrSetter[String] = autoCapitalize("_self")
+
+      lazy val _top: HtmlAttrSetter[String] = autoCapitalize("_top")
+    }
+  }
 
 
   // -- Props --

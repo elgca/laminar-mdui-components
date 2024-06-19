@@ -78,6 +78,46 @@ object Tabs extends WebComponent("mdui-tabs") {
   /** 是否填满父元素宽度 */
   lazy val fullWidth: HtmlAttr[Boolean] = boolAttr("full-width")
 
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val primary: HtmlAttrSetter[String] = autoCapitalize("primary")
+
+      lazy val secondary: HtmlAttrSetter[String] = autoCapitalize("secondary")
+    }
+
+    object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
+
+      lazy val topStart: HtmlAttrSetter[String] = autoCapitalize("top-start")
+
+      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+
+      lazy val topEnd: HtmlAttrSetter[String] = autoCapitalize("top-end")
+
+      lazy val bottomStart: HtmlAttrSetter[String] = autoCapitalize("bottom-start")
+
+      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+
+      lazy val bottomEnd: HtmlAttrSetter[String] = autoCapitalize("bottom-end")
+
+      lazy val leftStart: HtmlAttrSetter[String] = autoCapitalize("left-start")
+
+      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+
+      lazy val leftEnd: HtmlAttrSetter[String] = autoCapitalize("left-end")
+
+      lazy val rightStart: HtmlAttrSetter[String] = autoCapitalize("right-start")
+
+      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+
+      lazy val rightEnd: HtmlAttrSetter[String] = autoCapitalize("right-end")
+    }
+  }
+
 
   // -- Props --
 

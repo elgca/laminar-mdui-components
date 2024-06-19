@@ -87,6 +87,23 @@ object TopAppBar extends WebComponent("mdui-top-app-bar") {
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
 
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val centerAligned: HtmlAttrSetter[String] = autoCapitalize("center-aligned")
+
+      lazy val small: HtmlAttrSetter[String] = autoCapitalize("small")
+
+      lazy val medium: HtmlAttrSetter[String] = autoCapitalize("medium")
+
+      lazy val large: HtmlAttrSetter[String] = autoCapitalize("large")
+    }
+  }
+
 
   // -- Props --
 

@@ -102,6 +102,41 @@ object Dropdown extends WebComponent("mdui-dropdown") {
   /** 是否在触发下拉组件的光标位置打开下拉组件，常用于打开鼠标右键菜单 */
   lazy val openOnPointer: HtmlAttr[Boolean] = boolAttr("open-on-pointer")
 
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
+
+      lazy val auto: HtmlAttrSetter[String] = autoCapitalize("auto")
+
+      lazy val topStart: HtmlAttrSetter[String] = autoCapitalize("top-start")
+
+      lazy val top: HtmlAttrSetter[String] = autoCapitalize("top")
+
+      lazy val topEnd: HtmlAttrSetter[String] = autoCapitalize("top-end")
+
+      lazy val bottomStart: HtmlAttrSetter[String] = autoCapitalize("bottom-start")
+
+      lazy val bottom: HtmlAttrSetter[String] = autoCapitalize("bottom")
+
+      lazy val bottomEnd: HtmlAttrSetter[String] = autoCapitalize("bottom-end")
+
+      lazy val leftStart: HtmlAttrSetter[String] = autoCapitalize("left-start")
+
+      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+
+      lazy val leftEnd: HtmlAttrSetter[String] = autoCapitalize("left-end")
+
+      lazy val rightStart: HtmlAttrSetter[String] = autoCapitalize("right-start")
+
+      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+
+      lazy val rightEnd: HtmlAttrSetter[String] = autoCapitalize("right-end")
+    }
+  }
+
 
   // -- Props --
 

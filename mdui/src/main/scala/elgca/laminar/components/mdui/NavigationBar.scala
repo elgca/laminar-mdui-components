@@ -66,7 +66,7 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
     * * `labeled`：始终显示文本
     * * `unlabeled`：始终不显示文本
     */
-  lazy val labelVisibility: HtmlAttr[String] = stringAttr("label-visibility")
+  lazy val labelVisibility: CommonKeys.labelVisibility.type = CommonKeys.labelVisibility
 
   /** 当前选中的 `<mdui-navigation-bar-item>` 的值 */
   lazy val defaultValue: HtmlAttr[String] = stringAttr("value")
@@ -83,6 +83,23 @@ object NavigationBar extends WebComponent("mdui-navigation-bar") {
 
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object labelVisibility extends HtmlAttr[String]("label-visibility", StringAsIsCodec) {
+
+      lazy val auto: HtmlAttrSetter[String] = autoCapitalize("auto")
+
+      lazy val selected: HtmlAttrSetter[String] = autoCapitalize("selected")
+
+      lazy val labeled: HtmlAttrSetter[String] = autoCapitalize("labeled")
+
+      lazy val unlabeled: HtmlAttrSetter[String] = autoCapitalize("unlabeled")
+    }
+  }
 
 
   // -- Props --

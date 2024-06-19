@@ -61,7 +61,7 @@ object NavigationRail extends WebComponent("mdui-navigation-rail") {
     * * `center`：居中对齐
     * * `end`：底部对齐
     */
-  lazy val alignment: HtmlAttr[String] = stringAttr("alignment")
+  lazy val alignment: CommonKeys.alignment.type = CommonKeys.alignment
 
   /**
     * 默认情况下，导航栏相对于 `body` 元素显示。当该参数设置为 `true` 时，导航栏将相对于其父元素显示。
@@ -75,6 +75,28 @@ object NavigationRail extends WebComponent("mdui-navigation-rail") {
 
   /** 该组件在 [`<mdui-layout>`](/docs/2/components/layout) 中的布局顺序，按从小到大排序。默认为 `0` */
   lazy val order: HtmlAttr[Int] = intAttr("order")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
+
+      lazy val left: HtmlAttrSetter[String] = autoCapitalize("left")
+
+      lazy val right: HtmlAttrSetter[String] = autoCapitalize("right")
+    }
+
+    object alignment extends HtmlAttr[String]("alignment", StringAsIsCodec) {
+
+      lazy val start: HtmlAttrSetter[String] = autoCapitalize("start")
+
+      lazy val center: HtmlAttrSetter[String] = autoCapitalize("center")
+
+      lazy val end: HtmlAttrSetter[String] = autoCapitalize("end")
+    }
+  }
 
 
   // -- Props --

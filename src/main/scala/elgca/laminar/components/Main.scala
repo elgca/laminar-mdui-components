@@ -24,10 +24,11 @@ case class Config(
   )
   WebComponentsGenerator(config).generate()
 
-  MduiIconGenerator(
-    config.copy(jsImportBasePath = "@mdui/icons"),
-    forceScalaName = { case "mdui-icon-insert-chart--outlined" =>
-      "IconInsertChart2Outlined"
-    },
-  ).generate()
+  // too many icon, compile oom :)
+//  MduiIconGenerator(
+//    config.copy(jsImportBasePath = "@mdui/icons"),
+//    forceScalaName = { case "mdui-icon-insert-chart--outlined" =>
+//      "IconInsertChart2Outlined"
+//    },
+//  ).generate()
 }

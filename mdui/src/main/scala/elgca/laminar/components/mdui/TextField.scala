@@ -80,7 +80,7 @@ object TextField extends WebComponent("mdui-text-field") {
     * * `time`：用于输入时间的控件，不包括时区
     * * `week`：用于输入以年和周数组成的日期，不带时区
     */
-  lazy val `type`: HtmlAttr[String] = stringAttr("type")
+  lazy val `type`: CommonKeys.`type`.type = CommonKeys.`type`
 
   lazy val typ: HtmlAttr[String] = `type`
 
@@ -260,6 +260,59 @@ object TextField extends WebComponent("mdui-text-field") {
 
   /** 元素在使用 Tab 键切换焦点时的顺序 */
   lazy val tabIndex: HtmlAttr[Int] = intAttr("tabindex")
+
+  object CommonKeys extends CommonTypes {
+    import com.raquo.laminar.codecs.StringAsIsCodec
+    import com.raquo.laminar.keys.{EventProp, HtmlAttr, HtmlProp}
+    import com.raquo.laminar.modifiers.KeySetter.HtmlAttrSetter
+
+    object autoCapitalize extends HtmlAttr[String]("autocapitalize", StringAsIsCodec) {
+
+      lazy val none: HtmlAttrSetter[String] = autoCapitalize("none")
+
+      lazy val sentences: HtmlAttrSetter[String] = autoCapitalize("sentences")
+
+      lazy val words: HtmlAttrSetter[String] = autoCapitalize("words")
+
+      lazy val characters: HtmlAttrSetter[String] = autoCapitalize("characters")
+    }
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val filled: HtmlAttrSetter[String] = autoCapitalize("filled")
+
+      lazy val outlined: HtmlAttrSetter[String] = autoCapitalize("outlined")
+    }
+
+    object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
+
+      lazy val text: HtmlAttrSetter[String] = autoCapitalize("text")
+
+      lazy val number: HtmlAttrSetter[String] = autoCapitalize("number")
+
+      lazy val password: HtmlAttrSetter[String] = autoCapitalize("password")
+
+      lazy val url: HtmlAttrSetter[String] = autoCapitalize("url")
+
+      lazy val email: HtmlAttrSetter[String] = autoCapitalize("email")
+
+      lazy val search: HtmlAttrSetter[String] = autoCapitalize("search")
+
+      lazy val tel: HtmlAttrSetter[String] = autoCapitalize("tel")
+
+      lazy val hidden: HtmlAttrSetter[String] = autoCapitalize("hidden")
+
+      lazy val date: HtmlAttrSetter[String] = autoCapitalize("date")
+
+      lazy val datetimeLocal: HtmlAttrSetter[String] = autoCapitalize("datetime-local")
+
+      lazy val month: HtmlAttrSetter[String] = autoCapitalize("month")
+
+      lazy val time: HtmlAttrSetter[String] = autoCapitalize("time")
+
+      lazy val week: HtmlAttrSetter[String] = autoCapitalize("week")
+    }
+  }
 
 
   // -- Props --
