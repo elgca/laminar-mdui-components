@@ -6,12 +6,11 @@ import com.raquo.domtypes.common.{AttrDef, PropDef, ReflectedHtmlAttrDef}
 import scala.util.matching.Regex
 
 class WebComponentsTranslator(
-  val manifest: CustomElementsManifest,
-  val uiLibPropDefs: List[PropDef],
-  val uiLibAttrDefs: List[AttrDef],
-  val uiLibReflectedAttrDefs: List[ReflectedHtmlAttrDef],
-  val forceScalaAttrNames: List[(String, String)],
-  val jsImportBasePath: String,
+    val manifest: CustomElementsManifest, val uiLibPropDefs: List[PropDef],
+    val uiLibAttrDefs: List[AttrDef],
+    val uiLibReflectedAttrDefs: List[ReflectedHtmlAttrDef],
+    val forceScalaAttrNames: List[(String, String)],
+    val jsImportBasePath: String,
 ) {
 
   import WebComponentsTranslator.Def
@@ -44,14 +43,14 @@ class WebComponentsTranslator(
     }
 
   /**
-   * Some HTML props we want to reference in the UI library instead of creating new instances. This is mostly relevant to controlled inputs functionality where reference equality of props / attrs matters.
+   * Some HTML props we want to reference in the UI library instead of creating
+   * new instances. This is mostly relevant to controlled inputs functionality
+   * where reference equality of props / attrs matters.
    *
    * Return the UI library's scalaName for the prop, or None.
    */
   def useUiLibraryProp(
-    tagName: String,
-    propDomName: String,
-    jsTypes: List[Def.JsType],
+      tagName: String, propDomName: String, jsTypes: List[Def.JsType],
   ): Option[String] =
     (tagName, propDomName, jsTypes) match {
       case (_, "value", List(JsStringType))    => Some("value")
@@ -60,12 +59,14 @@ class WebComponentsTranslator(
     }
 
   /**
-   * Laminar needs to know which keys are allowed in `controlled` blocks. Web components often have their own name, e.g. Shoelace uses `mdui-input` instead of `input` for onInput events.
+   * Laminar needs to know which keys are allowed in `controlled` blocks. Web
+   * components often have their own name, e.g. Shoelace uses `mdui-input`
+   * instead of `input` for onInput events.
    *
    * Return (propScalaName, eventPropScalaName, initialValueRepr)
    */
   def allowControlKeys(tagName: String): Option[(String, String, String)] = {
-    val falseRepr       = "false"
+    val falseRepr = "false"
     val emptyStringRepr = "\"\""
     tagName match {
       case "mdui-checkbox" =>
@@ -87,46 +88,46 @@ class WebComponentsTranslator(
 
   // #nc We probably want a shared trait with these, because mdui-select for example is not an actual select element, but its API is made to match it.
   val sharedInputElementReadonlyProps: List[String] = List(
-    "validity",
-    "validationMessage",
+      "validity",
+      "validationMessage",
   )
 
   val baseEventType: String = "dom.Event"
 
   /**
-   * Fields that are already defined on the element base type in scalajs-dom. Does not have to be exhaustive, can just include what is also defined in Shoelace, to avoid conflicts or duplication
+   * Fields that are already defined on the element base type in scalajs-dom.
+   * Does not have to be exhaustive, can just include what is also defined in
+   * Shoelace, to avoid conflicts or duplication
    *
    * scalajs-dom element type -> fieldName
    */
   val builtInFields: List[(String, List[String])] = {
     val validityKeys = List("validity", "validationMessage")
     List(
-      // HTMLElement is a special key that is applied to all types
-      // "HTMLElement" -> List(),
-      // "HTMLButtonElement" -> validityKeys,
-      // "HTMLInputElement" -> validityKeys,
-      // "HTMLSelectElement" -> validityKeys,
-      // "HTMLTextAreaElement" -> validityKeys
+        // HTMLElement is a special key that is applied to all types
+        // "HTMLElement" -> List(),
+        // "HTMLButtonElement" -> validityKeys,
+        // "HTMLInputElement" -> validityKeys,
+        // "HTMLSelectElement" -> validityKeys,
+        // "HTMLTextAreaElement" -> validityKeys
     )
   }
 
   // Can be found in lib.dom.d.ts in Typescript:
   // https://github.com/microsoft/TypeScript/blob/main/src/lib/dom.generated.d.ts
   val stringConstantsCustomTypes: Map[String, List[String]] = Map(
-    "FillMode" -> List("auto", "backwards", "both", "forwards", "none"),
-    "PlaybackDirection" -> List(
-      "alternate",
-      "alternate-reverse",
-      "normal",
-      "reverse",
-    ),
+      "FillMode" -> List("auto", "backwards", "both", "forwards", "none"),
+      "PlaybackDirection" -> List(
+          "alternate",
+          "alternate-reverse",
+          "normal",
+          "reverse",
+      ),
   )
 
   // Fix types that are missing or incorrect in Shoelace manifest
   def fixTypes(
-    tagName: String,
-    attrNameOrPropName: String,
-    jsTypes: List[Def.JsType],
+      tagName: String, attrNameOrPropName: String, jsTypes: List[Def.JsType],
   ): List[Def.JsType] =
     (tagName, attrNameOrPropName) match {
       case ("mdui-alert", "duration") =>
@@ -138,8 +139,7 @@ class WebComponentsTranslator(
 
   // Return Some(attrName, aliases) if you want to skip scalifyAttrName logic and provide your own names.
   def maybeRenameAttr(
-    tagName: String,
-    attrNameOrPropName: String,
+      tagName: String, attrNameOrPropName: String,
   ): Option[(String, List[String])] =
     (tagName, attrNameOrPropName) match {
 //      case ("mdui-alert", "duration") => Some(("durationMs", Nil))
@@ -148,63 +148,11 @@ class WebComponentsTranslator(
 
   /** Pretend that these fields don't exist in the manifest at all. */
   def shouldIgnoreField(
-    tagName: String,
-    propName: String,
-    jsTypes: List[Def.JsType],
+      tagName: String, propName: String, jsTypes: List[Def.JsType],
   ): Boolean =
     return (tagName, propName, jsTypes) match {
       case (_, "defaultValue" | "defaultChecked", _) => true
       case _                                         => false
-    }
-    // I think in Shoelace a lot of these would be covered by a
-    // "member has no documentation string" rule, but I haven't
-    // checked for false positives.
-    (tagName, propName, jsTypes) match {
-      // #nc #nc #nc vvvvvv TODO
-      case ("mdui-color-picker", "swatches", _) =>
-        true // Composite List[String] separated by ; IF used as an attribute. Property is an array, but not reflected.
-      case ("mdui-format-date" | "mdui-relative-time", "date", _) =>
-        true // Date | String - convert date with `date.toISOString()` - For MVP, just make an attribute, and a codec for date?
-      // case ("mdui-select", "value" | "defaultValue", _) => true // String | String[]. Space-delimited string in html attr. Use `value` vs `values`?
-      // #nc #nc #nc ^^^^^ TODO
-      // Don't want those props, we have (non-reflected) attributes for them.
-      case (_, "defaultValue" | "defaultChecked", _) => true
-      // Don't need this
-      case (_, "dependencies", _) => true
-      // Unlike other slot props, this one returns a js.Promise of an element, not even an element
-      case ("mdui-animation", "defaultSlot", _) => true
-      // Exposed as read-write, but I think this is for internal use
-      case ("mdui-button-group", "disableRole", _) => true
-      // Read-write fields accepting an element, or a list of elements
-      // #TODO Not sure how to encode it right, do it later
-      case ("mdui-popup", p, _) if p.endsWith("Boundary") => true
-      // Hell if I know what this is.
-      case ("mdui-select", "displayLabel", _) => true
-      // Hell if I know what this is.
-      case ("mdui-progress-ring", "indicatorOffset", _) => true
-      // Callback JsCustomType((value: number) => string) #TODO encode this
-      case ("mdui-range", "tooltipFormatter", _) => true
-      // Callback JsCustomType((value: number) => string) #TODO encode this
-      case ("mdui-rating", "getSymbol", _) => true
-      // Not sure what these are, I guess readonly, but we probably need Laminar methods for these anyway
-      case ("mdui-input", "valueAsDate" | "valueAsNumber", _) => true
-      // Various callbacks
-      // #TODO we probably need to handle them somehow, might need special integration
-      case (_, p, _) if p.startsWith("handle") => true
-      // Modal field exposes the underlying modal for focus trapping. It has no type in Shoelace manifest.
-      // #TODO It could be useful but need to read about its type and test it out.
-      case ("mdui-dialog" | "mdui-drawer", "modal", _) => true
-      // These are (should be) read-only references to various important elements in many components
-      // #TODO expose them some time later if that's actually needed
-      case (_, p, types) if types.exists {
-            case Def.JsCustomType(str) if str.endsWith("Element") =>
-              true // regular elements & slots
-            case Def.JsCustomType(str) if str.startsWith("Sl") =>
-              true // custom element types
-            case _ => false
-          } =>
-        true
-      case _ => false
     }
 
   /** Force our logic to consider certain properties non-reflected. */
@@ -219,9 +167,7 @@ class WebComponentsTranslator(
 
   /** These should have been marked read-only in Shoelace config */
   def forceReadonlyField(
-    tagName: String,
-    propName: String,
-    jsTypes: List[Def.JsType],
+      tagName: String, propName: String, jsTypes: List[Def.JsType],
   ): Boolean =
     (tagName, propName, jsTypes) match {
       case ("mdui-animated-image", "frozenFrame", _) => true
@@ -233,72 +179,73 @@ class WebComponentsTranslator(
       case ("mdui-copy-button", "isCopying", _)       => true
       case ("mdui-modal" | "mdui-drawer", "modal", _) => true
       case (
-            "mdui-tree-item",
-            "indeterminate" | "isLeaf" | "loading" | "selectable",
-            _,
+              "mdui-tree-item",
+              "indeterminate" | "isLeaf" | "loading" | "selectable",
+              _,
           ) =>
         true
       case _ => false
     }
 
   /**
-   * Manually sourced from https://github.com/shoelace-style/shoelace/tree/next/src/events because custom-elements.json does not seem to contain this data.
+   * Manually sourced from
+   * https://github.com/shoelace-style/shoelace/tree/next/src/events because
+   * custom-elements.json does not seem to contain this data.
    */
   lazy val customEventTypes: List[Def.CustomEventType] =
     Nil // Not needed for MDUI?
 
   private val cssPropTypes = List(
-    // Length
-    CssPropTypePattern("width$"   -> Def.CssLengthType),
-    CssPropTypePattern("height$"  -> Def.CssLengthType),
-    CssPropTypePattern("size$"    -> Def.CssLengthType),
-    CssPropTypePattern("offset$"  -> Def.CssLengthType),
-    CssPropTypePattern("spacing$" -> Def.CssLengthType),
-    CssPropTypePattern(
-      "border-radius$" -> Def.CssLengthType,
-    ), // potentially composite value
-    CssPropTypePattern(
-      "padding$" -> Def.CssLengthType,
-    ), // potentially composite value
-    CssPropTypePattern("mdui-carousel")(
-      "^slide-gap|scroll-hint$" -> Def.CssLengthType,
-    ),
-    CssPropTypePattern("mdui-split-panel")(
-      "^divider-hit-area|min|max$" -> Def.CssLengthType,
-    ),
-    // Color
-    CssPropTypePattern("color$" -> Def.CssColorType),
-    CssPropTypePattern(
-      "^(track|symbol)-color-(active|inactive)$" -> Def.CssColorType,
-    ),
-    // Duration
-    CssPropTypePattern("mdui-spinner")("^speed$" -> Def.CssTimeType),
-    CssPropTypePattern("mdui-progress-ring")(
-      "^indicator-transition-duration$" -> Def.CssTimeType,
-    ),
-    CssPropTypePattern("mdui-tooltip")("-delay$" -> Def.CssTimeType),
-    // Number
-    CssPropTypePattern("ratio$" -> Def.CssNumberType),
-    // Line type
-    CssPropTypePattern("mdui-tree")("^indent-guide-style$" -> Def.CssLineType),
+      // Length
+      CssPropTypePattern("width$" -> Def.CssLengthType),
+      CssPropTypePattern("height$" -> Def.CssLengthType),
+      CssPropTypePattern("size$" -> Def.CssLengthType),
+      CssPropTypePattern("offset$" -> Def.CssLengthType),
+      CssPropTypePattern("spacing$" -> Def.CssLengthType),
+      CssPropTypePattern(
+          "border-radius$" -> Def.CssLengthType,
+      ), // potentially composite value
+      CssPropTypePattern(
+          "padding$" -> Def.CssLengthType,
+      ), // potentially composite value
+      CssPropTypePattern("mdui-carousel")(
+          "^slide-gap|scroll-hint$" -> Def.CssLengthType,
+      ),
+      CssPropTypePattern("mdui-split-panel")(
+          "^divider-hit-area|min|max$" -> Def.CssLengthType,
+      ),
+      // Color
+      CssPropTypePattern("color$" -> Def.CssColorType),
+      CssPropTypePattern(
+          "^(track|symbol)-color-(active|inactive)$" -> Def.CssColorType,
+      ),
+      // Duration
+      CssPropTypePattern("mdui-spinner")("^speed$" -> Def.CssTimeType),
+      CssPropTypePattern("mdui-progress-ring")(
+          "^indicator-transition-duration$" -> Def.CssTimeType,
+      ),
+      CssPropTypePattern("mdui-tooltip")("-delay$" -> Def.CssTimeType),
+      // Number
+      CssPropTypePattern("ratio$" -> Def.CssNumberType),
+      // Line type
+      CssPropTypePattern("mdui-tree")(
+          "^indent-guide-style$" -> Def.CssLineType),
 
-    // 这里添加
-    CssPropTypePattern("shape-corner$"           -> Def.CssLengthType),
-    CssPropTypePattern("z-index$"                -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-small$"     -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-normal$"    -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-large$"     -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-rounded$"   -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-indicator$" -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-plain$"     -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-thumb$"     -> Def.CssLengthType),
-    CssPropTypePattern("shape-corner-rich$"      -> Def.CssLengthType),
+      // 这里添加
+      CssPropTypePattern("shape-corner$" -> Def.CssLengthType),
+      CssPropTypePattern("z-index$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-small$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-normal$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-large$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-rounded$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-indicator$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-plain$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-thumb$" -> Def.CssLengthType),
+      CssPropTypePattern("shape-corner-rich$" -> Def.CssLengthType),
   )
 
   def cssPropertyType(
-    cssPropName: String,
-    cssPropDescription: String,
-    elementTagName: String,
+      cssPropName: String, cssPropDescription: String, elementTagName: String,
   ): Def.CssType = {
     val propNameWithoutPrefix = withoutPrefix("--", cssPropName)
     val maybeType = cssPropTypes.collectFirst {
@@ -309,9 +256,9 @@ class WebComponentsTranslator(
         cssType
     }
     maybeType.getOrElse(
-      throw new Exception(
-        s"Unknown type of css property named `${cssPropName}` in element `${elementTagName}` (desc: `${cssPropDescription}`) ",
-      ),
+        throw new Exception(
+            s"Unknown type of css property named `${cssPropName}` in element `${elementTagName}` (desc: `${cssPropDescription}`) ",
+        ),
     )
   }
 
@@ -319,50 +266,51 @@ class WebComponentsTranslator(
     manifest.validModules.map { module =>
       if module.kind != "javascript-module" then {
         throw new Exception(
-          s"Unknown module type `${module.kind}` for module `${module.path}`.",
+            s"Unknown module type `${module.kind}` for module `${module.path}`.",
         )
       }
       if module.validDeclarations.length != 1 then {
         throw new Exception(
-          s"Expected exactly one declaration in module `${module.path}`, got ${module.validDeclarations.length}.",
+            s"Expected exactly one declaration in module `${module.path}`, got ${module.validDeclarations.length}.",
         )
       }
       val declaration = module.validDeclarations.head
       if declaration.kind != "class" then {
         throw new Exception(
-          s"Expected kind=class declaration in module `${module.path}`, got `${declaration.kind}` for declaration `${declaration.name}`.",
+            s"Expected kind=class declaration in module `${module.path}`, got `${declaration.kind}` for declaration `${declaration.name}`.",
         )
       }
       if !declaration.customElement then {
         throw new Exception(
-          s"Expected customElement=true declaration in module `${module.path}` for declaration `${declaration.name}`.",
+            s"Expected customElement=true declaration in module `${module.path}` for declaration `${declaration.name}`.",
         )
       }
       val props = allJsProperties(declaration)
       val attrs = attributes(declaration)
       Def.Element(
-        tagName = declaration.tagName,
-        // 这里添加
-        scalaName = declaration.name, // withoutPrefix("Sl", declaration.name),
-        importPath = importPath(declaration),
-        elementBaseType = elementBaseType(declaration.tagName),
-        docUrl = Some(declaration.documentation).filter(_.nonEmpty),
-        description = descriptionLines(
-          Some(declaration.description)
-            .filter(_.nonEmpty)
-            .getOrElse(declaration.summary),
-        ),
-        events = events(declaration),
-        allJsProperties = props,
-        writableNonReflectedProperties = writableNonReflectedProperties(
-          declaration,
-          props,
-          exceptAttributes = attrs,
-        ),
-        attributes = attrs,
-        cssProperties = cssProperties(declaration),
-        cssParts = cssParts(declaration),
-        slots = slots(declaration),
+          tagName = declaration.tagName,
+          // 这里添加
+          scalaName =
+            declaration.name, // withoutPrefix("Sl", declaration.name),
+          importPath = importPath(declaration),
+          elementBaseType = elementBaseType(declaration.tagName),
+          docUrl = Some(declaration.documentation).filter(_.nonEmpty),
+          description = descriptionLines(
+              Some(declaration.description)
+                .filter(_.nonEmpty)
+                .getOrElse(declaration.summary),
+          ),
+          events = events(declaration),
+          allJsProperties = props,
+          writableNonReflectedProperties = writableNonReflectedProperties(
+              declaration,
+              props,
+              exceptAttributes = attrs,
+          ),
+          attributes = attrs,
+          cssProperties = cssProperties(declaration),
+          cssParts = cssParts(declaration),
+          slots = slots(declaration),
       )
     }
 
@@ -374,22 +322,24 @@ class WebComponentsTranslator(
   def events(elementDeclaration: M.Declaration): List[Def.Event] =
     elementDeclaration.events.map { event =>
       Def.Event(
-        description = descriptionLines(event.description),
-        domName = event.name,
-        scalaName = scalifyEventPropName(event.name),
-        customType = customEventTypes.find(_.rawName == event.eventClass),
+          description = descriptionLines(event.description),
+          domName = event.name,
+          scalaName = scalifyEventPropName(event.name),
+          customType = customEventTypes.find(_.rawName == event.eventClass),
       )
     }
 
   def allJsProperties(elementDeclaration: M.Declaration): List[Def.Field] =
     // val baseElementType = elementBaseType(elementDeclaration.tagName)
-    elementDeclaration.members.filter { m =>
-      m.kind == "field" && m.privacy == "public" && !m.static
-    }.filterNot { m =>
-      isInputElement(
-        elementDeclaration.tagName,
-      ) && sharedInputElementReadonlyProps.contains(m.name)
-    }
+    elementDeclaration.members
+      .filter { m =>
+        m.kind == "field" && m.privacy == "public" && !m.static
+      }
+      .filterNot { m =>
+        isInputElement(
+            elementDeclaration.tagName,
+        ) && sharedInputElementReadonlyProps.contains(m.name)
+      }
       // .filterNot { m =>
       //  builtInFields
       //    .collectFirst { case (`baseElementType`, fields) => fields }
@@ -407,7 +357,7 @@ class WebComponentsTranslator(
           val attrName = Some(m.attribute).filter(_.nonEmpty)
           if attrName.isEmpty && m.reflects then {
             throw new Exception(
-              s"Reflected prop `${m.name}` in element `${elementDeclaration.tagName}` has no attribute specified.",
+                s"Reflected prop `${m.name}` in element `${elementDeclaration.tagName}` has no attribute specified.",
             )
           }
           // In Shoelace, you can have an attribute like "label", setting which sets the property "label",
@@ -422,24 +372,22 @@ class WebComponentsTranslator(
           //  }
           // }
           Some(
-            Def.Field(
-              propName = m.name,
-              propScalaName = scalifyPropName(m.name),
-              attrName = attrName,
-              reflected = m.reflects,
-              readonly = isFieldReadonly(elementDeclaration, m, jsTypes),
-              jsTypes = jsTypes,
-              default = Some(m.default).filter(_.nonEmpty),
-              description = descriptionLines(m.description),
-            ),
+              Def.Field(
+                  propName = m.name,
+                  propScalaName = scalifyPropName(m.name),
+                  attrName = attrName,
+                  reflected = m.reflects,
+                  readonly = isFieldReadonly(elementDeclaration, m, jsTypes),
+                  jsTypes = jsTypes,
+                  default = Some(m.default).filter(_.nonEmpty),
+                  description = descriptionLines(m.description),
+              ),
           )
         }
       }
 
   def isFieldReadonly(
-    element: M.Declaration,
-    field: M.Member,
-    jsTypes: List[Def.JsType],
+      element: M.Declaration, field: M.Member, jsTypes: List[Def.JsType],
   ): Boolean =
     field.readonly || forceReadonlyField(element.tagName, field.name, jsTypes)
 
@@ -450,17 +398,15 @@ class WebComponentsTranslator(
   // }
 
   def writableNonReflectedProperties(
-    element: M.Declaration,
-    allProperties: List[Def.Field],
-    exceptAttributes: List[Def.Attribute],
+      element: M.Declaration, allProperties: List[Def.Field],
+      exceptAttributes: List[Def.Attribute],
   ): List[Def.Field] =
     allProperties.filter { field =>
       lazy val isReflected = {
         val forceUse =
           forceNonReflectedProperty(element.tagName, field.propName)
         forceUse || !exceptAttributes.exists(a =>
-          field.attrName.contains(a.attrName),
-        )
+          field.attrName.contains(a.attrName))
       }
       !field.readonly && isReflected
     }
@@ -479,14 +425,14 @@ class WebComponentsTranslator(
           maybeRenameAttr(tagName, attr.name)
             .getOrElse(scalifyAttrName(attr.name))
         Some(
-          Def.Attribute(
-            attrName = attr.name,
-            scalaName = scalaName,
-            scalaAliases = scalaAliases,
-            jsTypes = jsTypes,
-            default = Some(attr.default).filter(_.nonEmpty),
-            description = descriptionLines(attr.description),
-          ),
+            Def.Attribute(
+                attrName = attr.name,
+                scalaName = scalaName,
+                scalaAliases = scalaAliases,
+                jsTypes = jsTypes,
+                default = Some(attr.default).filter(_.nonEmpty),
+                description = descriptionLines(attr.description),
+            ),
         )
       }
     }
@@ -506,32 +452,32 @@ class WebComponentsTranslator(
           "control-box" // #nc looks like a bug in shoelace manifest - report.
         } else {
           throw new Exception(
-            s"Encountered empty CSS part name in element `${elementDeclaration.tagName}`.",
+              s"Encountered empty CSS part name in element `${elementDeclaration.tagName}`.",
           )
         }
       } else {
         part.name
       }
       Def.CssPart(
-        description = descriptionLines(part.description),
-        cssName = partName,
-        scalaName = scalifyName(partName),
+          description = descriptionLines(part.description),
+          cssName = partName,
+          scalaName = scalifyName(partName),
       )
     }
 
   def cssProperties(
-    elementDeclaration: M.Declaration,
+      elementDeclaration: M.Declaration,
   ): List[Def.CssProperty] =
     elementDeclaration.cssProperties.map { prop =>
       Def.CssProperty(
-        description = descriptionLines(prop.description),
-        cssName = prop.name,
-        scalaName = scalifyPrefixedName("--", prop.name),
-        cssType = cssPropertyType(
-          prop.name,
-          prop.description,
-          elementDeclaration.tagName,
-        ),
+          description = descriptionLines(prop.description),
+          cssName = prop.name,
+          scalaName = scalifyPrefixedName("--", prop.name),
+          cssType = cssPropertyType(
+              prop.name,
+              prop.description,
+              elementDeclaration.tagName,
+          ),
       )
     }
 
@@ -539,19 +485,17 @@ class WebComponentsTranslator(
     elementDeclaration.slots.map { slot =>
       val isDefault = slot.name == ""
       Def.Slot(
-        description = descriptionLines(slot.description),
-        domName = slot.name,
-        scalaName = if isDefault then "default" else scalifyName(slot.name),
-        isDefault = isDefault,
+          description = descriptionLines(slot.description),
+          domName = slot.name,
+          scalaName = if isDefault then "default" else scalifyName(slot.name),
+          isDefault = isDefault,
       )
     }
 
   // -- domain helpers...
 
   case class CssPropTypePattern(
-    tagName: Option[String],
-    propNameRegex: Regex,
-    cssType: Def.CssType,
+      tagName: Option[String], propNameRegex: Regex, cssType: Def.CssType,
   )
 
   object CssPropTypePattern {
@@ -560,54 +504,57 @@ class WebComponentsTranslator(
       CssPropTypePattern(None, propNameAndType._1.r, propNameAndType._2)
 
     def apply(
-      tagName: String,
+        tagName: String,
     )(propNameAndType: (String, Def.CssType)): CssPropTypePattern =
       CssPropTypePattern(
-        Some(tagName),
-        propNameAndType._1.r,
-        propNameAndType._2,
+          Some(tagName),
+          propNameAndType._1.r,
+          propNameAndType._2,
       )
   }
 
   def CustomEventType(
-    rawName: String,
+      rawName: String,
   )(
-    fields: (String, String)*,
+      fields: (String, String)*,
   ): Def.CustomEventType =
     Def.CustomEventType(
-      rawName = rawName,
-      // 这里添加
-      scalaName = rawName, // withoutPrefix("Sl", rawName),
-      fields = fields.toList.map { case (domName, jsTypeStr) =>
-        val jsTypes = parseJsTypes("", "", M.ValueType(jsTypeStr))
-        val description =
-          if jsTypes.exists(_.isInstanceOf[Def.JsStringConstantType]) then {
-            List(jsTypeStr)
-          } else Nil
-        val context = s"event type `${rawName}`"
-        Def.CustomEventTypeField(
-          domName = domName,
-          scalaName = scalifyName(domName),
-          jsTypes = jsTypes,
-          description = description,
-        )
-      },
+        rawName = rawName,
+        // 这里添加
+        scalaName = rawName, // withoutPrefix("Sl", rawName),
+        fields = fields.toList.map { case (domName, jsTypeStr) =>
+          val jsTypes = parseJsTypes("", "", M.ValueType(jsTypeStr))
+          val description =
+            if jsTypes.exists(_.isInstanceOf[Def.JsStringConstantType]) then {
+              List(jsTypeStr)
+            } else Nil
+          val context = s"event type `${rawName}`"
+          Def.CustomEventTypeField(
+              domName = domName,
+              scalaName = scalifyName(domName),
+              jsTypes = jsTypes,
+              description = description,
+          )
+        },
     )
 
   def scalaAttrInputTypeStr(attr: Def.Attribute, tagName: String): String = {
-    val printableTypes = attr.jsTypes.map {
-      case Def.JsStringConstantType(_) => Def.JsStringType
-      case other                       => other
-    }.distinct.filter {
-      case Def.JsUndefinedType => false
-      case Def.JsCustomType("VirtualElement") =>
-        false // I think it's always there together with `Element`?
-      case _ => true
-    }
+    val printableTypes = attr.jsTypes
+      .map {
+        case Def.JsStringConstantType(_) => Def.JsStringType
+        case other                       => other
+      }
+      .distinct
+      .filter {
+        case Def.JsUndefinedType => false
+        case Def.JsCustomType("VirtualElement") =>
+          false // I think it's always there together with `Element`?
+        case _ => true
+      }
     if printableTypes.isEmpty then {
       throw new Exception(
-        s"ERROR: scalaAttrInputTypeStr: No printable types for attr `${attr.attrName}` in tag `${tagName}` (jsTypes = ${attr.jsTypes
-            .mkString(", ")})",
+          s"ERROR: scalaAttrInputTypeStr: No printable types for attr `${attr.attrName}` in tag `${tagName}` (jsTypes = ${attr.jsTypes
+              .mkString(", ")})",
       )
     } else if printableTypes.length == 1 then {
       printableTypes.head match {
@@ -618,7 +565,7 @@ class WebComponentsTranslator(
         // case Def.JsCustomType(c) => c
         case t =>
           println(
-            s"WARNING: scalaAttrInputTypeStr: Unhandled js type `${t}` for attr `${attr.attrName}` in tag `${tagName}`.",
+              s"WARNING: scalaAttrInputTypeStr: Unhandled js type `${t}` for attr `${attr.attrName}` in tag `${tagName}`.",
           )
           t.toString
       }
@@ -630,34 +577,37 @@ class WebComponentsTranslator(
         "Int" // #nc
       } else {
         throw new Exception(
-          s"ERROR: scalaAttrInputTypeStr does not support multiple printable types in attr `${attr.attrName}` in tag `${tagName}`: ${printableTypes
-              .mkString(", ")}",
+            s"ERROR: scalaAttrInputTypeStr does not support multiple printable types in attr `${attr.attrName}` in tag `${tagName}`: ${printableTypes
+                .mkString(", ")}",
         )
       }
     }
   }
 
   def scalaPropInputTypeStr(prop: Def.Field, tagName: String): String = {
-    val printableTypes = prop.jsTypes.map {
-      case Def.JsStringConstantType(_) => Def.JsStringType
-      case Def.JsCustomType("string[]") =>
-        Def.JsStringType // #nc temporary fix for mdui-select value
-      case other => other
-    }.distinct.filter {
-      case Def.JsUndefinedType => false
-      case Def.JsCustomType("VirtualElement") =>
-        false // I think it's always there together with `Element`?
-      case _ => true
-    }
+    val printableTypes = prop.jsTypes
+      .map {
+        case Def.JsStringConstantType(_) => Def.JsStringType
+        case Def.JsCustomType("string[]") =>
+          Def.JsStringType // #nc temporary fix for mdui-select value
+        case other => other
+      }
+      .distinct
+      .filter {
+        case Def.JsUndefinedType => false
+        case Def.JsCustomType("VirtualElement") =>
+          false // I think it's always there together with `Element`?
+        case _ => true
+      }
     if printableTypes.isEmpty then {
       throw new Exception(
-        s"ERROR: scalaPropInputTypeStr: No printable types for prop `${prop.propName}` in tag `${tagName}` (jsTypes = ${prop.jsTypes
-            .mkString(", ")})",
+          s"ERROR: scalaPropInputTypeStr: No printable types for prop `${prop.propName}` in tag `${tagName}` (jsTypes = ${prop.jsTypes
+              .mkString(", ")})",
       )
     } else if printableTypes.length == 1 then {
       val converter = DataTypeConverter.jsTypeToScalaPartial.orElse { case t =>
         println(
-          s"WARNING: scalaPropInputTypeStr: Unhandled js type `${t}` for prop `${prop.propName}` in tag `${tagName}`.",
+            s"WARNING: scalaPropInputTypeStr: Unhandled js type `${t}` for prop `${prop.propName}` in tag `${tagName}`.",
         )
         t.toString
       }
@@ -689,53 +639,52 @@ class WebComponentsTranslator(
       //  println(s"WARNING: scalaAttrInputType: Multi-element input not supported for attr `${attr.attrName}` in tag `${tagName}`.")
       //  "Element" // #nc or Element[], but how to express that...
     } else if (
-      // 这里添加支持多个会发生什么
-      true
+        // 这里添加支持多个会发生什么
+        true
     ) {
       printableTypes
         .map(DataTypeConverter.jsTypeToScala)
         .map(
-          _.getOrElse(
-            throw new Exception(
-              s"ERROR: scalaPropInputTypeStr does not support type in prop `${prop.propName}` in tag `${tagName}`: ${printableTypes
-                  .mkString(", ")}",
+            _.getOrElse(
+                throw new Exception(
+                    s"ERROR: scalaPropInputTypeStr does not support type in prop `${prop.propName}` in tag `${tagName}`: ${printableTypes
+                        .mkString(", ")}",
+                ),
             ),
-          ),
         )
         .mkString(" | ")
     } else {
 
       throw new Exception(
-        s"ERROR: scalaPropInputTypeStr does not support multiple printable types in prop `${prop.propName}` in tag `${tagName}`: ${printableTypes
-            .mkString(", ")}",
+          s"ERROR: scalaPropInputTypeStr does not support multiple printable types in prop `${prop.propName}` in tag `${tagName}`: ${printableTypes
+              .mkString(", ")}",
       )
     }
   }
 
   def scalaPropOutputTypes(
-    context: String,
-    jsTypes: List[Def.JsType],
+      context: String, jsTypes: List[Def.JsType],
   ): List[String] = {
-    val printableTypes = jsTypes.map {
-      case Def.JsStringConstantType(_) => Def.JsStringType
-      case Def.JsCustomType("string[]") =>
-        Def.JsStringType // #nc temporary fix for mdui-select value
-      case other => other
-    }
+    val printableTypes = jsTypes
+      .map {
+        case Def.JsStringConstantType(_) => Def.JsStringType
+        case Def.JsCustomType("string[]") =>
+          Def.JsStringType // #nc temporary fix for mdui-select value
+        case other => other
+      }
       .map(scalaOutputType(context, _))
       .distinct
     if printableTypes.isEmpty then {
       throw new Exception(
-        s"ERROR: scalaPropOutputTypeStr does not have any types to work with in ${context}: ${printableTypes
-            .mkString(", ")}",
+          s"ERROR: scalaPropOutputTypeStr does not have any types to work with in ${context}: ${printableTypes
+              .mkString(", ")}",
       )
     }
     printableTypes
   }
 
   def scalaPropOutputType(
-    context: String,
-    jsTypes: List[Def.JsType],
+      context: String, jsTypes: List[Def.JsType],
   ): String =
     scalaPropOutputTypes(context, jsTypes).mkString(" | ")
     // if (jsTypes.contains(Def.JsUndefinedType)) {
@@ -781,19 +730,17 @@ class WebComponentsTranslator(
         "org.scalajs.dom.HTMLElement"
       case t =>
         throw new Exception(
-          s"WARNING: scalaPropOutputTypeStr: Unhandled js type `${t}` for ${context}.",
+            s"WARNING: scalaPropOutputTypeStr: Unhandled js type `${t}` for ${context}.",
         )
       // t.toString
     }
 
   // -- util helpers
   def parseJsTypes(
-    tagName: String,
-    propOrAttrName: String,
-    value: M.ValueType,
+      tagName: String, propOrAttrName: String, value: M.ValueType,
   ): List[Def.JsType] = {
     val singleQuotedPattern = """^'([^']*)'$""".r
-    val commentPattern      = """/\*.*?\*/""".r
+    val commentPattern = """/\*.*?\*/""".r
 
     val clearText = commentPattern.replaceAllIn(value.text, "")
     val jsTypes = clearText.trim
@@ -821,7 +768,7 @@ class WebComponentsTranslator(
               case "number"    => List(Def.JsNumberType)
               case "CSSNumberish" =>
                 List(
-                  Def.JsNumberType,
+                    Def.JsNumberType,
                 ) // #nc this is milliseconds, so it should be a double
               // 这里添加
               case number if number.toDoubleOption.isDefined =>
@@ -830,7 +777,7 @@ class WebComponentsTranslator(
                 List(Def.JsCustomType("HTMLElement"))
               case custom =>
                 List(
-                  Def.JsCustomType(custom),
+                    Def.JsCustomType(custom),
                 )
             }
           }
@@ -871,31 +818,33 @@ class WebComponentsTranslator(
   }
 
   /**
-   * Note: UI library might chose encode reflected attrs as props instead, which might have different names. Use this only for choosing canonical names.
+   * Note: UI library might chose encode reflected attrs as props instead, which
+   * might have different names. Use this only for choosing canonical names.
    */
   private val allPossibleUiLibAttrs =
     uiLibAttrDefs ++ uiLibReflectedAttrDefs.map(_.toAttrDef)
 
   /** Returns main scala name, as well as aliases. */
   def scalifyAttrName(attrName: String): (String, List[String]) = {
-    val maybeScalaAttrName = forceScalaAttrNames.collectFirst {
-      case (domAttrName, scalaAttrName) if domAttrName == attrName =>
-        (scalaAttrName, Nil)
-    }
+    val maybeScalaAttrName = forceScalaAttrNames
+      .collectFirst {
+        case (domAttrName, scalaAttrName) if domAttrName == attrName =>
+          (scalaAttrName, Nil)
+      }
       .orElse(
-        allPossibleUiLibAttrs
-          .find(_.domName == attrName)
-          .map { a =>
-            val mainName = if a.scalaName.endsWith("Attr") then {
-              a.scalaName.substring(0, a.scalaName.length - 4)
-            } else {
-              a.scalaName
-            }
-            (mainName, a.scalaAliases)
-          },
+          allPossibleUiLibAttrs
+            .find(_.domName == attrName)
+            .map { a =>
+              val mainName = if a.scalaName.endsWith("Attr") then {
+                a.scalaName.substring(0, a.scalaName.length - 4)
+              } else {
+                a.scalaName
+              }
+              (mainName, a.scalaAliases)
+            },
       )
     maybeScalaAttrName.getOrElse(
-      (scalifyName(attrName), Nil),
+        (scalifyName(attrName), Nil),
     )
   }
 

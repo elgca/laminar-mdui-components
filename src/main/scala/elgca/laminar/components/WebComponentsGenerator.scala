@@ -64,7 +64,7 @@ class WebComponentsGenerator(
       tagName: String, attrScalaName: String,
   ): String =
     (tagName, attrScalaName) match {
-      case _                          => attrScalaName
+      case _ => attrScalaName
     }
 
   def attrImplName(scalaTypeStr: String): String =
