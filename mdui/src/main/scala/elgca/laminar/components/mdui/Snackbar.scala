@@ -99,17 +99,17 @@ object Snackbar extends WebComponent("mdui-snackbar") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val `top`: HtmlAttrSetter[String] = placement("top")
+      lazy val top: HtmlAttrSetter[String] = placement("top")
 
-      lazy val `top-start`: HtmlAttrSetter[String] = placement("top-start")
+      lazy val topStart: HtmlAttrSetter[String] = placement("top-start")
 
-      lazy val `top-end`: HtmlAttrSetter[String] = placement("top-end")
+      lazy val topEnd: HtmlAttrSetter[String] = placement("top-end")
 
-      lazy val `bottom`: HtmlAttrSetter[String] = placement("bottom")
+      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val `bottom-start`: HtmlAttrSetter[String] = placement("bottom-start")
+      lazy val bottomStart: HtmlAttrSetter[String] = placement("bottom-start")
 
-      lazy val `bottom-end`: HtmlAttrSetter[String] = placement("bottom-end")
+      lazy val bottomEnd: HtmlAttrSetter[String] = placement("bottom-end")
     }
   }
 

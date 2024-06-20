@@ -158,44 +158,44 @@ object MenuItem extends WebComponent("mdui-menu-item") {
 
     object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
 
-      lazy val `alternate`: HtmlAttrSetter[String] = rel("alternate")
+      lazy val alternate: HtmlAttrSetter[String] = rel("alternate")
 
-      lazy val `author`: HtmlAttrSetter[String] = rel("author")
+      lazy val author: HtmlAttrSetter[String] = rel("author")
 
-      lazy val `bookmark`: HtmlAttrSetter[String] = rel("bookmark")
+      lazy val bookmark: HtmlAttrSetter[String] = rel("bookmark")
 
-      lazy val `external`: HtmlAttrSetter[String] = rel("external")
+      lazy val external: HtmlAttrSetter[String] = rel("external")
 
-      lazy val `help`: HtmlAttrSetter[String] = rel("help")
+      lazy val help: HtmlAttrSetter[String] = rel("help")
 
-      lazy val `license`: HtmlAttrSetter[String] = rel("license")
+      lazy val license: HtmlAttrSetter[String] = rel("license")
 
-      lazy val `me`: HtmlAttrSetter[String] = rel("me")
+      lazy val me: HtmlAttrSetter[String] = rel("me")
 
-      lazy val `next`: HtmlAttrSetter[String] = rel("next")
+      lazy val next: HtmlAttrSetter[String] = rel("next")
 
-      lazy val `nofollow`: HtmlAttrSetter[String] = rel("nofollow")
+      lazy val nofollow: HtmlAttrSetter[String] = rel("nofollow")
 
-      lazy val `noreferrer`: HtmlAttrSetter[String] = rel("noreferrer")
+      lazy val noreferrer: HtmlAttrSetter[String] = rel("noreferrer")
 
-      lazy val `opener`: HtmlAttrSetter[String] = rel("opener")
+      lazy val opener: HtmlAttrSetter[String] = rel("opener")
 
-      lazy val `prev`: HtmlAttrSetter[String] = rel("prev")
+      lazy val prev: HtmlAttrSetter[String] = rel("prev")
 
-      lazy val `search`: HtmlAttrSetter[String] = rel("search")
+      lazy val search: HtmlAttrSetter[String] = rel("search")
 
-      lazy val `tag`: HtmlAttrSetter[String] = rel("tag")
+      lazy val tag: HtmlAttrSetter[String] = rel("tag")
     }
 
     object target extends HtmlAttr[String]("target", StringAsIsCodec) {
 
-      lazy val `_blank`: HtmlAttrSetter[String] = target("_blank")
+      lazy val _blank: HtmlAttrSetter[String] = target("_blank")
 
-      lazy val `_parent`: HtmlAttrSetter[String] = target("_parent")
+      lazy val _parent: HtmlAttrSetter[String] = target("_parent")
 
-      lazy val `_self`: HtmlAttrSetter[String] = target("_self")
+      lazy val _self: HtmlAttrSetter[String] = target("_self")
 
-      lazy val `_top`: HtmlAttrSetter[String] = target("_top")
+      lazy val _top: HtmlAttrSetter[String] = target("_top")
     }
   }
 

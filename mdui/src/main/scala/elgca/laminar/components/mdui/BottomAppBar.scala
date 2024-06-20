@@ -81,11 +81,11 @@ object BottomAppBar extends WebComponent("mdui-bottom-app-bar") {
 
     object scrollBehavior extends HtmlAttr[String]("scroll-behavior", StringAsIsCodec) {
 
-      lazy val `hide`: HtmlAttrSetter[String] = scrollBehavior("hide")
+      lazy val hide: HtmlAttrSetter[String] = scrollBehavior("hide")
 
-      lazy val `shrink`: HtmlAttrSetter[String] = scrollBehavior("shrink")
+      lazy val shrink: HtmlAttrSetter[String] = scrollBehavior("shrink")
 
-      lazy val `elevate`: HtmlAttrSetter[String] = scrollBehavior("elevate")
+      lazy val elevate: HtmlAttrSetter[String] = scrollBehavior("elevate")
     }
   }
 

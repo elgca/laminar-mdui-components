@@ -74,9 +74,9 @@ object Menu extends WebComponent("mdui-menu") {
 
     object selects extends HtmlAttr[String]("selects", StringAsIsCodec) {
 
-      lazy val `single`: HtmlAttrSetter[String] = selects("single")
+      lazy val single: HtmlAttrSetter[String] = selects("single")
 
-      lazy val `multiple`: HtmlAttrSetter[String] = selects("multiple")
+      lazy val multiple: HtmlAttrSetter[String] = selects("multiple")
     }
   }
 

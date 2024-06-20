@@ -90,9 +90,9 @@ object NavigationDrawer extends WebComponent("mdui-navigation-drawer") {
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val `left`: HtmlAttrSetter[String] = placement("left")
+      lazy val left: HtmlAttrSetter[String] = placement("left")
 
-      lazy val `right`: HtmlAttrSetter[String] = placement("right")
+      lazy val right: HtmlAttrSetter[String] = placement("right")
     }
   }
 

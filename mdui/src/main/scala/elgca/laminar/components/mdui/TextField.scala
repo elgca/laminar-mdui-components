@@ -268,92 +268,92 @@ object TextField extends WebComponent("mdui-text-field") {
 
     object autoComplete extends HtmlAttr[String]("autocomplete", StringAsIsCodec) {
 
-      lazy val `off`: HtmlAttrSetter[String] = autoComplete("off")
+      lazy val off: HtmlAttrSetter[String] = autoComplete("off")
 
-      lazy val `on`: HtmlAttrSetter[String] = autoComplete("on")
+      lazy val on: HtmlAttrSetter[String] = autoComplete("on")
     }
 
     object autoCapitalize extends HtmlAttr[String]("autocapitalize", StringAsIsCodec) {
 
-      lazy val `none`: HtmlAttrSetter[String] = autoCapitalize("none")
+      lazy val none: HtmlAttrSetter[String] = autoCapitalize("none")
 
-      lazy val `sentences`: HtmlAttrSetter[String] = autoCapitalize("sentences")
+      lazy val sentences: HtmlAttrSetter[String] = autoCapitalize("sentences")
 
-      lazy val `words`: HtmlAttrSetter[String] = autoCapitalize("words")
+      lazy val words: HtmlAttrSetter[String] = autoCapitalize("words")
 
-      lazy val `characters`: HtmlAttrSetter[String] = autoCapitalize("characters")
+      lazy val characters: HtmlAttrSetter[String] = autoCapitalize("characters")
     }
 
     object inputMode extends HtmlAttr[String]("inputmode", StringAsIsCodec) {
 
-      lazy val `none`: HtmlAttrSetter[String] = inputMode("none")
+      lazy val none: HtmlAttrSetter[String] = inputMode("none")
 
-      lazy val `text`: HtmlAttrSetter[String] = inputMode("text")
+      lazy val text: HtmlAttrSetter[String] = inputMode("text")
 
-      lazy val `decimal`: HtmlAttrSetter[String] = inputMode("decimal")
+      lazy val decimal: HtmlAttrSetter[String] = inputMode("decimal")
 
-      lazy val `numeric`: HtmlAttrSetter[String] = inputMode("numeric")
+      lazy val numeric: HtmlAttrSetter[String] = inputMode("numeric")
 
-      lazy val `tel`: HtmlAttrSetter[String] = inputMode("tel")
+      lazy val tel: HtmlAttrSetter[String] = inputMode("tel")
 
-      lazy val `search`: HtmlAttrSetter[String] = inputMode("search")
+      lazy val search: HtmlAttrSetter[String] = inputMode("search")
 
-      lazy val `email`: HtmlAttrSetter[String] = inputMode("email")
+      lazy val email: HtmlAttrSetter[String] = inputMode("email")
 
-      lazy val `url`: HtmlAttrSetter[String] = inputMode("url")
+      lazy val url: HtmlAttrSetter[String] = inputMode("url")
     }
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val `filled`: HtmlAttrSetter[String] = variant("filled")
+      lazy val filled: HtmlAttrSetter[String] = variant("filled")
 
-      lazy val `outlined`: HtmlAttrSetter[String] = variant("outlined")
+      lazy val outlined: HtmlAttrSetter[String] = variant("outlined")
     }
 
     object enterkeyhint extends HtmlAttr[String]("enterkeyhint", StringAsIsCodec) {
 
-      lazy val `enter`: HtmlAttrSetter[String] = enterkeyhint("enter")
+      lazy val enter: HtmlAttrSetter[String] = enterkeyhint("enter")
 
-      lazy val `done`: HtmlAttrSetter[String] = enterkeyhint("done")
+      lazy val done: HtmlAttrSetter[String] = enterkeyhint("done")
 
-      lazy val `go`: HtmlAttrSetter[String] = enterkeyhint("go")
+      lazy val go: HtmlAttrSetter[String] = enterkeyhint("go")
 
-      lazy val `next`: HtmlAttrSetter[String] = enterkeyhint("next")
+      lazy val next: HtmlAttrSetter[String] = enterkeyhint("next")
 
-      lazy val `previous`: HtmlAttrSetter[String] = enterkeyhint("previous")
+      lazy val previous: HtmlAttrSetter[String] = enterkeyhint("previous")
 
-      lazy val `search`: HtmlAttrSetter[String] = enterkeyhint("search")
+      lazy val search: HtmlAttrSetter[String] = enterkeyhint("search")
 
-      lazy val `send`: HtmlAttrSetter[String] = enterkeyhint("send")
+      lazy val send: HtmlAttrSetter[String] = enterkeyhint("send")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {
 
-      lazy val `text`: HtmlAttrSetter[String] = `type`("text")
+      lazy val text: HtmlAttrSetter[String] = `type`("text")
 
-      lazy val `number`: HtmlAttrSetter[String] = `type`("number")
+      lazy val number: HtmlAttrSetter[String] = `type`("number")
 
-      lazy val `password`: HtmlAttrSetter[String] = `type`("password")
+      lazy val password: HtmlAttrSetter[String] = `type`("password")
 
-      lazy val `url`: HtmlAttrSetter[String] = `type`("url")
+      lazy val url: HtmlAttrSetter[String] = `type`("url")
 
-      lazy val `email`: HtmlAttrSetter[String] = `type`("email")
+      lazy val email: HtmlAttrSetter[String] = `type`("email")
 
-      lazy val `search`: HtmlAttrSetter[String] = `type`("search")
+      lazy val search: HtmlAttrSetter[String] = `type`("search")
 
-      lazy val `tel`: HtmlAttrSetter[String] = `type`("tel")
+      lazy val tel: HtmlAttrSetter[String] = `type`("tel")
 
-      lazy val `hidden`: HtmlAttrSetter[String] = `type`("hidden")
+      lazy val hidden: HtmlAttrSetter[String] = `type`("hidden")
 
-      lazy val `date`: HtmlAttrSetter[String] = `type`("date")
+      lazy val date: HtmlAttrSetter[String] = `type`("date")
 
-      lazy val `datetime-local`: HtmlAttrSetter[String] = `type`("datetime-local")
+      lazy val datetimeLocal: HtmlAttrSetter[String] = `type`("datetime-local")
 
-      lazy val `month`: HtmlAttrSetter[String] = `type`("month")
+      lazy val month: HtmlAttrSetter[String] = `type`("month")
 
-      lazy val `time`: HtmlAttrSetter[String] = `type`("time")
+      lazy val time: HtmlAttrSetter[String] = `type`("time")
 
-      lazy val `week`: HtmlAttrSetter[String] = `type`("week")
+      lazy val week: HtmlAttrSetter[String] = `type`("week")
     }
   }
 

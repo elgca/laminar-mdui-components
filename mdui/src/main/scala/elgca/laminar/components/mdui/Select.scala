@@ -157,18 +157,18 @@ object Select extends WebComponent("mdui-select") with ControlledInput {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val `filled`: HtmlAttrSetter[String] = variant("filled")
+      lazy val filled: HtmlAttrSetter[String] = variant("filled")
 
-      lazy val `outlined`: HtmlAttrSetter[String] = variant("outlined")
+      lazy val outlined: HtmlAttrSetter[String] = variant("outlined")
     }
 
     object placement extends HtmlAttr[String]("placement", StringAsIsCodec) {
 
-      lazy val `auto`: HtmlAttrSetter[String] = placement("auto")
+      lazy val auto: HtmlAttrSetter[String] = placement("auto")
 
-      lazy val `bottom`: HtmlAttrSetter[String] = placement("bottom")
+      lazy val bottom: HtmlAttrSetter[String] = placement("bottom")
 
-      lazy val `top`: HtmlAttrSetter[String] = placement("top")
+      lazy val top: HtmlAttrSetter[String] = placement("top")
     }
   }
 

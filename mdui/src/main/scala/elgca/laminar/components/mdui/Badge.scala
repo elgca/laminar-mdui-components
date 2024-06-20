@@ -51,9 +51,9 @@ object Badge extends WebComponent("mdui-badge") {
 
     object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
 
-      lazy val `small`: HtmlAttrSetter[String] = variant("small")
+      lazy val small: HtmlAttrSetter[String] = variant("small")
 
-      lazy val `large`: HtmlAttrSetter[String] = variant("large")
+      lazy val large: HtmlAttrSetter[String] = variant("large")
     }
   }
 

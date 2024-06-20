@@ -14,18 +14,20 @@ import java.nio.file.{Files, NoSuchFileException, Path}
 import scala.collection.mutable
 
 class WebComponentsGenerator(
-  val config: Config,
-  val format: CodeFormatting = CodeFormatting(),
+    val config: Config, val format: CodeFormatting = CodeFormatting(),
 ) extends SourceGenerator(format) {
 
   final val Def: WebComponentsDef.type = WebComponentsDef
 
-  /** Overwrite this with directory name if you ant to output components in a subdirectory */
+  /**
+   * Overwrite this with directory name if you ant to output components in a
+   * subdirectory
+   */
   lazy val componentsPackageName: String = ""
 
   lazy val componentsPackagePath: String = List(
-    config.baseOutputPackagePath,
-    componentsPackageName,
+      config.baseOutputPackagePath,
+      componentsPackageName,
   ).filter(_.nonEmpty).mkString(".")
 
   /** Package path of EventTypes file */
@@ -40,7 +42,10 @@ class WebComponentsGenerator(
 
   lazy val baseDomEventType: String = "Event"
 
-  /** If true, we'll import scala.scalajs.js.| - this is needed to support Scala 2. */
+  /**
+   * If true, we'll import scala.scalajs.js.| - this is needed to support Scala
+   * 2.
+   */
   lazy val useScalaJsUnionType: Boolean = true
 
   lazy val commonStringAttrs: List[String] = List(
@@ -56,8 +61,7 @@ class WebComponentsGenerator(
   //  - Should we change the variant props to have Variant or ButtonVariant types (instead of String) maybe?
   //  - Then we can process such types in the generator without deep shoelace knowledge, kinda like customEventTypes?
   def commonStringAttrScalaName(
-    tagName: String,
-    attrScalaName: String,
+      tagName: String, attrScalaName: String,
   ): String =
     (tagName, attrScalaName) match {
       case ("mdui-button", "variant") => "buttonVariant"
@@ -71,7 +75,7 @@ class WebComponentsGenerator(
       case "Int"     => "intAttr"
       case _ =>
         println(
-          s"ATTR ...No impl defined for scala type `${scalaTypeStr}`, trying `htmlAttr` for now.",
+            s"ATTR ...No impl defined for scala type `${scalaTypeStr}`, trying `htmlAttr` for now.",
         )
         "htmlAttr"
     }
@@ -120,19 +124,19 @@ class WebComponentsGenerator(
     } catch {
       case err: NoSuchFileException =>
         throw new Exception(
-          s"NoSuchFileException: ${err.getMessage} file not found. Make sure the path is correct. Make sure to npm install JS dependencies in the ./js folder.",
+            s"NoSuchFileException: ${err.getMessage} file not found. Make sure the path is correct. Make sure to npm install JS dependencies in the ./js folder.",
         )
     }
 
   lazy val st: WebComponentsTranslator = new WebComponentsTranslator(
-    manifest = manifest,
-    uiLibPropDefs = PropDefs.defs,
-    uiLibAttrDefs = HtmlAttrDefs.defs,
-    uiLibReflectedAttrDefs = ReflectedHtmlAttrDefs.defs,
-    forceScalaAttrNames = List(
-      "autocorrect" -> "autoCorrect",
-    ),
-    jsImportBasePath = config.jsImportBasePath,
+      manifest = manifest,
+      uiLibPropDefs = PropDefs.defs,
+      uiLibAttrDefs = HtmlAttrDefs.defs,
+      uiLibReflectedAttrDefs = ReflectedHtmlAttrDefs.defs,
+      forceScalaAttrNames = List(
+          "autocorrect" -> "autoCorrect",
+      ),
+      jsImportBasePath = config.jsImportBasePath,
   )
 
   def generate(): Unit = {
@@ -142,9 +146,9 @@ class WebComponentsGenerator(
       printEventTypesFile(st.customEventTypes)
       val output = getOutput()
       writeToFile(
-        packagePath = eventTypesPackagePath,
-        fileName = eventTypesObjectName + ".scala",
-        fileContent = output,
+          packagePath = eventTypesPackagePath,
+          fileName = eventTypesObjectName + ".scala",
+          fileContent = output,
       )
     }
 
@@ -152,9 +156,9 @@ class WebComponentsGenerator(
       if el.writableNonReflectedProperties.nonEmpty then {
         println(el.tagName)
         println(
-          el.writableNonReflectedProperties
-            .map(_.propName)
-            .mkString("  > ", ", ", ""),
+            el.writableNonReflectedProperties
+              .map(_.propName)
+              .mkString("  > ", ", ", ""),
         )
       }
     }
@@ -164,15 +168,15 @@ class WebComponentsGenerator(
       printElementFile(fileName, el)
       val output = getOutput()
       writeToFile(
-        packagePath = componentsPackagePath,
-        fileName = fileName,
-        fileContent = output,
+          packagePath = componentsPackagePath,
+          fileName = fileName,
+          fileContent = output,
       )
     }
   }
 
   def printEventTypesFile(
-    eventTypes: List[CustomEventType],
+      eventTypes: List[CustomEventType],
   ): Unit = {
     line(s"package ${eventTypesPackagePath}")
     line()
@@ -201,8 +205,8 @@ class WebComponentsGenerator(
         enter(s"trait ${et.scalaName} extends ${baseCustomEventType} {", "}") {
           et.fields.foreach { field =>
             val scalaTypeStr = st.scalaPropOutputType(
-              s"prop `${field.domName}` in event type `${et.scalaName}`",
-              field.jsTypes,
+                s"prop `${field.domName}` in event type `${et.scalaName}`",
+                field.jsTypes,
             )
             line()
             blockCommentLines(field.description)
@@ -215,8 +219,7 @@ class WebComponentsGenerator(
   }
 
   def printElementFile(
-    elementFileName: String,
-    element: Def.Element,
+      elementFileName: String, element: Def.Element,
   ): Unit = {
 
     line(s"package ${componentsPackagePath}")
@@ -227,7 +230,7 @@ class WebComponentsGenerator(
     printComponentFileImports(element, supportsControlledInput)
 
     val extraTraits = List(
-      if supportsControlledInput then "ControlledInput" else "",
+        if supportsControlledInput then "ControlledInput" else "",
     ).filter(_.nonEmpty).map(" with " + _).mkString(" ")
 
     val objCommentLines = {
@@ -237,33 +240,33 @@ class WebComponentsGenerator(
         s"[[$onlineSourceUrl ${elementFileName} source code]]"
       val componentsDocUrl = element.docUrl
         .map(url =>
-          s"[[$url ${config.frameworkName} ${element.scalaName} docs]]",
-        )
+          s"[[$url ${config.frameworkName} ${element.scalaName} docs]]")
         .toList
       List(
-        element.description,
-        List(onlineSourceUrlLine),
-        componentsDocUrl,
+          element.description,
+          List(onlineSourceUrlLine),
+          componentsDocUrl,
       ).filter(_.nonEmpty).flatMap(_ :+ "").init
     }
 
     blockCommentLines(objCommentLines)
     enter(
-      s"object ${element.scalaName} extends WebComponent(${repr(element.tagName)})${extraTraits} {",
-      "}",
+        s"object ${element.scalaName} extends WebComponent(${repr(
+              element.tagName)})${extraTraits} {",
+        "}",
     ) {
 
       printComponentRawImport(element)
 
       val componentTraitName = rawComponentTraitName(element)
-      val elementBaseType    = "dom." + st.elementBaseType(element.tagName)
-      val showRawComponent   = element.allJsProperties.nonEmpty
+      val elementBaseType = "dom." + st.elementBaseType(element.tagName)
+      val showRawComponent = element.allJsProperties.nonEmpty
 
       printRefType(
-        element.scalaName,
-        componentTraitName,
-        showRawComponent,
-        elementBaseType,
+          element.scalaName,
+          componentTraitName,
+          showRawComponent,
+          elementBaseType,
       )
 
       printTag(st.allowControlKeys(element.tagName))
@@ -287,20 +290,19 @@ class WebComponentsGenerator(
   }
 
   def printComponentFileImports(
-    element: Def.Element,
-    supportsControlledInput: Boolean,
+      element: Def.Element, supportsControlledInput: Boolean,
   ): Unit = {
     val customEventTypes = element.events.flatMap(_.customType)
     val laminarKeyTypes = List(
-      if element.events.nonEmpty then "EventProp" else "",
-      if element.writableNonReflectedProperties.nonEmpty then "HtmlProp"
-      else "",
-      if element.attributes.nonEmpty then "HtmlAttr" else "",
-      if element.cssProperties.nonEmpty then "StyleProp" else "",
+        if element.events.nonEmpty then "EventProp" else "",
+        if element.writableNonReflectedProperties.nonEmpty then "HtmlProp"
+        else "",
+        if element.attributes.nonEmpty then "HtmlAttr" else "",
+        if element.cssProperties.nonEmpty then "StyleProp" else "",
     ).filter(_.nonEmpty)
     if laminarKeyTypes.nonEmpty then {
       line(
-        s"import com.raquo.laminar.keys.${laminarKeyTypes.mkString("{", ", ", "}")}",
+          s"import com.raquo.laminar.keys.${laminarKeyTypes.mkString("{", ", ", "}")}",
       )
     }
     // line("import com.raquo.utils.JSImportSideEffect")
@@ -331,7 +333,7 @@ class WebComponentsGenerator(
     line("import scala.scalajs.js.annotation.JSImport")
     line()
     line(
-      s"// This file is generated at compile-time by ${codeFileName}",
+        s"// This file is generated at compile-time by ${codeFileName}",
     )
     line()
   }
@@ -343,10 +345,8 @@ class WebComponentsGenerator(
   }
 
   def printRefType(
-    componentObjectName: String,
-    componentTraitName: String,
-    showRawComponent: Boolean,
-    elementBaseType: String,
+      componentObjectName: String, componentTraitName: String,
+      showRawComponent: Boolean, elementBaseType: String,
   ): Unit = {
     line()
     line(s"type Self = ${componentObjectName}.type") // #nc #TODO Organize
@@ -365,7 +365,7 @@ class WebComponentsGenerator(
         line()
         enter(s"override protected lazy val tag: CustomHtmlTag[Ref] = {", "}") {
           line(
-            s"tagWithControlledInput(${propName}, initial = ${initialValueRepr}, ${eventPropName})",
+              s"tagWithControlledInput(${propName}, initial = ${initialValueRepr}, ${eventPropName})",
           )
         }
     }
@@ -381,7 +381,7 @@ class WebComponentsGenerator(
       line()
       blockCommentLines(event.description)
       line(
-        s"lazy val ${event.scalaName}: EventProp[${eventType}] = eventProp(${repr(event.domName)})",
+          s"lazy val ${event.scalaName}: EventProp[${eventType}] = eventProp(${repr(event.domName)})",
       )
     }
   }
@@ -409,21 +409,23 @@ class WebComponentsGenerator(
         val commonKeyName =
           commonStringAttrScalaName(element.tagName, attr.scalaName)
 
-        val values = attr.jsTypes.map {
-          case Def.JsStringConstantType(value) => value
-          case Def.JsUndefinedType             => null
-        }.filter(_ != null)
+        val values = attr.jsTypes
+          .map {
+            case Def.JsStringConstantType(value) => value
+            case Def.JsUndefinedType             => null
+          }
+          .filter(_ != null)
         assert(
-          !commonKeys.contains(commonKeyName),
-          s"Duplicate CommonKeysName:${commonKeyName} tag: ${element.tagName} before: ${commonKeys
-              .get(commonKeyName)} current: ${attr.attrName} ${values}",
+            !commonKeys.contains(commonKeyName),
+            s"Duplicate CommonKeysName:${commonKeyName} tag: ${element.tagName} before: ${commonKeys
+                .get(commonKeyName)} current: ${attr.attrName} ${values}",
         )
         commonKeys.put(commonKeyName, (attr.attrName, values))
         line(
-          s"lazy val ${attr.scalaName}: CommonKeys.${commonKeyName}.type = CommonKeys.${commonKeyName}",
+            s"lazy val ${attr.scalaName}: CommonKeys.${commonKeyName}.type = CommonKeys.${commonKeyName}",
         )
       } else if commonStringAttrs.contains(
-          attr.attrName,
+            attr.attrName,
         ) && attr.jsTypes.forall {
           case Def.JsStringType | Def.JsStringConstantType(_) |
               Def.JsUndefinedType =>
@@ -434,18 +436,19 @@ class WebComponentsGenerator(
         val commonKeyName =
           commonStringAttrScalaName(element.tagName, attr.scalaName)
         line(
-          s"lazy val ${attr.scalaName}: CommonKeys.${commonKeyName}.type = CommonKeys.${commonKeyName}",
+            s"lazy val ${attr.scalaName}: CommonKeys.${commonKeyName}.type = CommonKeys.${commonKeyName}",
         )
       } else {
         line(
-          s"lazy val ${attr.scalaName}: HtmlAttr[${scalaTypeStr}] = ${attrImplName(scalaTypeStr)}(${repr(attr.attrName)})",
+            s"lazy val ${attr.scalaName}: HtmlAttr[${scalaTypeStr}] = ${attrImplName(
+                  scalaTypeStr)}(${repr(attr.attrName)})",
         )
       }
       if attr.scalaAliases.nonEmpty then {
         attr.scalaAliases.foreach { alias =>
           line()
           line(
-            s"lazy val ${alias}: HtmlAttr[${scalaTypeStr}] = ${attr.scalaName}",
+              s"lazy val ${alias}: HtmlAttr[${scalaTypeStr}] = ${attr.scalaName}",
           )
         }
       }
@@ -461,14 +464,14 @@ class WebComponentsGenerator(
         commonKeys.foreach { case (commonKeyName, (attrName, values)) =>
           line()
           enter(
-            s"object ${commonKeyName} extends HtmlAttr[String](${repr(attrName)}, StringAsIsCodec) {",
-            "}",
+              s"object ${commonKeyName} extends HtmlAttr[String](${repr(attrName)}, StringAsIsCodec) {",
+              "}",
           ) {
             values.foreach { value =>
               val valueName = commonKeyScalifyName(value)
               line()
               line(
-                s"lazy val ${valueName}: HtmlAttrSetter[String] = ${commonKeyName}(${repr(value)})",
+                  s"lazy val ${valueName}: HtmlAttrSetter[String] = ${commonKeyName}(${repr(value)})",
               )
             }
           }
@@ -486,12 +489,18 @@ class WebComponentsGenerator(
     // 保留原本的字段信息
     // keep org name, used more easy
     s"`${rawName}`"
-//    val reservedScalaWords = List("lazy", "type")
-//    if reservedScalaWords.contains(rawName) then {
-//      s"`${rawName}`"
-//    } else {
-//      st.scalifyPrefixedName("", rawName)
-//    }
+    val reservedRuler = (name: String) => {
+      val reservedScalaWords = List("lazy", "type")
+      val validValue = """^[a-zA-Z0-9\-_]+$""".r
+      reservedScalaWords.contains(name) ||
+      name.head.toString.toIntOption.isDefined ||
+      !validValue.matches(name)
+    }
+    if reservedRuler(rawName) then {
+      s"`${rawName}`"
+    } else {
+      st.scalifyPrefixedName("", rawName)
+    }
   }
 
   def printProps(element: Def.Element): Unit = {
@@ -513,16 +522,16 @@ class WebComponentsGenerator(
       propImpl match
         case Some(value) =>
           line(
-            s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = ${value}",
+              s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = ${value}",
           )
         case None =>
           println(
-            s"PROP ...No impl defined for scala type `${scalaInputTypeStr}`, " +
-              s"tag:`${element.tagName}`, class:`${element.scalaName}`, " +
-              s" trying `asIsProp` for now.",
+              s"PROP ...No impl defined for scala type `${scalaInputTypeStr}`, " +
+                s"tag:`${element.tagName}`, class:`${element.scalaName}`, " +
+                s" trying `asIsProp` for now.",
           )
           line(
-            s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = asIsProp(${repr(prop.propName)})",
+              s"lazy val ${prop.propName}: HtmlProp[${scalaInputTypeStr}, ?] = asIsProp(${repr(prop.propName)})",
           )
 
     }
@@ -553,7 +562,7 @@ class WebComponentsGenerator(
             blockCommentLines(commentLines)
           }
           line(
-            s"lazy val ${slot.scalaName}: Slot = Slot(${repr(slot.domName)})",
+              s"lazy val ${slot.scalaName}: Slot = Slot(${repr(slot.domName)})",
           )
         }
       }
@@ -561,8 +570,7 @@ class WebComponentsGenerator(
   }
 
   def printCssProps(
-    element: Def.Element,
-    nestUnderObjectName: Option[String],
+      element: Def.Element, nestUnderObjectName: Option[String],
   ): Unit = {
 
     def printProps(): Unit =
@@ -572,8 +580,8 @@ class WebComponentsGenerator(
           cssProp.description.map(_.replace(" _(default: undefined)_", ""))
         blockCommentLines(commentLines)
         line(s"lazy val ${cssProp.scalaName}: ${cssPropType(
-            cssProp.cssType,
-          )} = ${cssPropImplName(cssProp.cssType)}(${repr(cssProp.cssName)})")
+                  cssProp.cssType,
+              )} = ${cssPropImplName(cssProp.cssType)}(${repr(cssProp.cssName)})")
       }
 
     line()
@@ -604,7 +612,7 @@ class WebComponentsGenerator(
       line("@inline def noCssParts: Unit = ()")
     } else {
       line(
-        "/** For documentation only. You need to style these from a CSS stylesheet. */",
+          "/** For documentation only. You need to style these from a CSS stylesheet. */",
       )
       enter("object cssParts {", "}") {
         element.cssParts.map { part =>
@@ -617,23 +625,21 @@ class WebComponentsGenerator(
   }
 
   def printRawComponent(
-    element: Def.Element,
-    componentTraitName: String,
-    elementBaseType: String,
+      element: Def.Element, componentTraitName: String, elementBaseType: String,
   ): Unit = {
     line()
     line()
     line("// -- Element type -- ")
     line()
     enter(
-      s"@js.native trait ${componentTraitName} extends js.Object { this: ${elementBaseType} => ",
-      "}",
+        s"@js.native trait ${componentTraitName} extends js.Object { this: ${elementBaseType} => ",
+        "}",
     ) {
       element.allJsProperties.foreach { prop =>
         val context =
           s"RawComponent prop `${prop.propName}` in `${element.tagName}`"
         val outputType = st.scalaPropOutputType(context, prop.jsTypes)
-        val defType    = if prop.readonly then "val" else "var"
+        val defType = if prop.readonly then "val" else "var"
         line()
         blockCommentLines(prop.description)
         line(s"${defType} ${prop.propScalaName}: ${outputType}")
@@ -648,7 +654,7 @@ class WebComponentsGenerator(
 
   /** Helper tool to find common / popular attributes */
   def printAttrUsageAnalysis(
-    elements: List[Def.Element],
+      elements: List[Def.Element],
   ): Unit = {
     println("-- Most popular attributes --")
 
@@ -671,18 +677,18 @@ class WebComponentsGenerator(
 
     sortedAttrs.foreach { case (key, els) =>
       println(
-        s"${key} // ${els.length} usages: ${els.map(_.scalaName).mkString(", ")}",
+          s"${key} // ${els.length} usages: ${els.map(_.scalaName).mkString(", ")}",
       )
     }
     println(
-      s"Total unique attr names: ${sortedAttrs.length}, and attr instances: ${sortedAttrs
-          .foldLeft(0)((acc, t) => acc + t._2.length)}",
+        s"Total unique attr names: ${sortedAttrs.length}, and attr instances: ${sortedAttrs
+            .foldLeft(0)((acc, t) => acc + t._2.length)}",
     )
-    val n             = 4
+    val n = 4
     val filteredAttrs = sortedAttrs.filter(_._2.length >= n)
     println(
-      s"(N usages >= ${n}), Total unique attr names ${filteredAttrs.length}, and attr instances: ${filteredAttrs
-          .foldLeft(0)((acc, t) => acc + t._2.length)}",
+        s"(N usages >= ${n}), Total unique attr names ${filteredAttrs.length}, and attr instances: ${filteredAttrs
+            .foldLeft(0)((acc, t) => acc + t._2.length)}",
     )
   }
 
@@ -693,19 +699,17 @@ class WebComponentsGenerator(
   // }
 
   def replaceFirstPrefix(
-    line: String,
-    findReplace: List[(String, String)],
+      line: String, findReplace: List[(String, String)],
   ): String =
-    findReplace.collectFirst {
-      case (prefix, replacement) if line.startsWith(prefix) =>
-        replacement + line.substring(prefix.length)
-    }
+    findReplace
+      .collectFirst {
+        case (prefix, replacement) if line.startsWith(prefix) =>
+          replacement + line.substring(prefix.length)
+      }
       .getOrElse(line)
 
   def writeToFile(
-    packagePath: String,
-    fileName: String,
-    fileContent: String,
+      packagePath: String, fileName: String, fileContent: String,
   ): File = {
     val filePath = config.baseOutputDirectoryPath + "/" + (packagePath + ".")
       .replace(config.baseOutputPackagePath + ".", "")
@@ -713,7 +717,7 @@ class WebComponentsGenerator(
     val outputFile = new File(filePath)
     outputFile.getParentFile.mkdirs()
 
-    val fileOutputStream  = new FileOutputStream(outputFile)
+    val fileOutputStream = new FileOutputStream(outputFile)
     val outputPrintStream = new PrintStream(fileOutputStream)
 
     outputPrintStream.print(fileContent)

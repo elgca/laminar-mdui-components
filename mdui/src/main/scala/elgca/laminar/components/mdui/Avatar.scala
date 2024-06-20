@@ -63,15 +63,15 @@ object Avatar extends WebComponent("mdui-avatar") {
 
     object fit extends HtmlAttr[String]("fit", StringAsIsCodec) {
 
-      lazy val `contain`: HtmlAttrSetter[String] = fit("contain")
+      lazy val contain: HtmlAttrSetter[String] = fit("contain")
 
-      lazy val `cover`: HtmlAttrSetter[String] = fit("cover")
+      lazy val cover: HtmlAttrSetter[String] = fit("cover")
 
-      lazy val `fill`: HtmlAttrSetter[String] = fit("fill")
+      lazy val fill: HtmlAttrSetter[String] = fit("fill")
 
-      lazy val `none`: HtmlAttrSetter[String] = fit("none")
+      lazy val none: HtmlAttrSetter[String] = fit("none")
 
-      lazy val `scale-down`: HtmlAttrSetter[String] = fit("scale-down")
+      lazy val scaleDown: HtmlAttrSetter[String] = fit("scale-down")
     }
   }
 
