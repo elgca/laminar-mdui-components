@@ -11,7 +11,7 @@ case class CustomElementsManifest(
   modules: List[CustomElementsManifest.Module],
 ) {
   def validModules: List[CustomElementsManifest.Module] = {
-    modules.filter(x => x.validDeclarations.nonEmpty)
+    modules//.filter(x => x.validDeclarations.nonEmpty)
   }
 }
 
