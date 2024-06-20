@@ -56,7 +56,7 @@ object Button extends WebComponent("mdui-button") {
     * * `outlined`：带边框的按钮，适用于中等优先级，且次要的操作，如“返回”
     * * `text`：文本按钮，适用于最低优先级的操作
     */
-  lazy val variant: CommonKeys.buttonVariant.type = CommonKeys.buttonVariant
+  lazy val variant: CommonKeys.variant.type = CommonKeys.variant
 
   /** 是否填满父元素宽度 */
   lazy val fullWidth: HtmlAttr[Boolean] = boolAttr("full-width")
@@ -246,19 +246,6 @@ object Button extends WebComponent("mdui-button") {
       lazy val get: HtmlAttrSetter[String] = formMethod("get")
     }
 
-    object buttonVariant extends HtmlAttr[String]("variant", StringAsIsCodec) {
-
-      lazy val elevated: HtmlAttrSetter[String] = buttonVariant("elevated")
-
-      lazy val filled: HtmlAttrSetter[String] = buttonVariant("filled")
-
-      lazy val tonal: HtmlAttrSetter[String] = buttonVariant("tonal")
-
-      lazy val outlined: HtmlAttrSetter[String] = buttonVariant("outlined")
-
-      lazy val text: HtmlAttrSetter[String] = buttonVariant("text")
-    }
-
     object rel extends HtmlAttr[String]("rel", StringAsIsCodec) {
 
       lazy val alternate: HtmlAttrSetter[String] = rel("alternate")
@@ -288,6 +275,19 @@ object Button extends WebComponent("mdui-button") {
       lazy val search: HtmlAttrSetter[String] = rel("search")
 
       lazy val tag: HtmlAttrSetter[String] = rel("tag")
+    }
+
+    object variant extends HtmlAttr[String]("variant", StringAsIsCodec) {
+
+      lazy val elevated: HtmlAttrSetter[String] = variant("elevated")
+
+      lazy val filled: HtmlAttrSetter[String] = variant("filled")
+
+      lazy val tonal: HtmlAttrSetter[String] = variant("tonal")
+
+      lazy val outlined: HtmlAttrSetter[String] = variant("outlined")
+
+      lazy val text: HtmlAttrSetter[String] = variant("text")
     }
 
     object `type` extends HtmlAttr[String]("type", StringAsIsCodec) {

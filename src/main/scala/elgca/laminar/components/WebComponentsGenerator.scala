@@ -64,7 +64,6 @@ class WebComponentsGenerator(
       tagName: String, attrScalaName: String,
   ): String =
     (tagName, attrScalaName) match {
-      case ("mdui-button", "variant") => "buttonVariant"
       case _                          => attrScalaName
     }
 
