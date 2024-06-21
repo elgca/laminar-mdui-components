@@ -34,6 +34,7 @@ lazy val mdui = (project in file("."))
       name := "Laminar MDUI",
       normalizedName := "laminar-mdui",
       organization := "elgca",
+      homepage := Some(url("https://github.com/elgca/laminar-mdui-components")),
       developers := List(
           Developer(
               id = "elgca",
@@ -42,6 +43,7 @@ lazy val mdui = (project in file("."))
               url = url("https://github.com/elgca"),
           ),
       ),
+      licenses := List("MIT" -> url("https://opensource.org/license/MIT")),
       (Test / publishArtifact) := false,
       pomIncludeRepository := { _ => false },
       sonatypeCredentialHost := "s01.oss.sonatype.org",
