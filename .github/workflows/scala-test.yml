@@ -32,6 +32,7 @@ jobs:
         distribution: 'temurin'
         cache: 'sbt'
     - name: npm install
+      run : npm install
     - name: Run tests
       run: sbt test
     - name: code generator
