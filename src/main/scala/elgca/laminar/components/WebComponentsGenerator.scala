@@ -135,7 +135,7 @@ class WebComponentsGenerator(
       forceScalaAttrNames = List(
           "autocorrect" -> "autoCorrect",
       ),
-      jsImportBasePath = config.jsImportBasePath,
+      config = config,
   )
 
   def generate(): Unit = {

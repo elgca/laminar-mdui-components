@@ -9,9 +9,9 @@ class WebComponentsTranslator(
     val manifest: CustomElementsManifest, val uiLibPropDefs: List[PropDef],
     val uiLibAttrDefs: List[AttrDef],
     val uiLibReflectedAttrDefs: List[ReflectedHtmlAttrDef],
-    val forceScalaAttrNames: List[(String, String)],
-    val jsImportBasePath: String,
+    val forceScalaAttrNames: List[(String, String)], val config: Config,
 ) {
+  val jsImportBasePath = config.jsImportBasePath
 
   import WebComponentsTranslator.Def
 
@@ -292,7 +292,7 @@ class WebComponentsTranslator(
           // 这里添加
           scalaName =
             declaration.name, // withoutPrefix("Sl", declaration.name),
-          importPath = importPath(declaration),
+          importPath = importPath(module, declaration),
           elementBaseType = elementBaseType(declaration.tagName),
           docUrl = Some(declaration.documentation).filter(_.nonEmpty),
           description = descriptionLines(
@@ -314,7 +314,9 @@ class WebComponentsTranslator(
       )
     }
 
-  def importPath(elementDeclaration: M.Declaration): String = {
+  def importPath(module: M.Module,
+      elementDeclaration: M.Declaration): String = {
+    module.path
     val moduleName = elementDeclaration.pureTagName
     s"${jsImportBasePath}/${moduleName}.js"
   }
