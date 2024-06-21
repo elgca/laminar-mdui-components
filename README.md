@@ -10,6 +10,8 @@
 
 <h1 align="center">Laminar Bindings for MDUI Web Components</h1>
 
+[English](/README_EN.md)
+
 - [MDUI](https://www.mdui.org/en/docs/2/) :  A Material Design 3 (Material You) library of Web Components.
 - [Laminar](https://laminar.dev/) :  A Native Scala.js UI library
 - Dependencies Version
