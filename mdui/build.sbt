@@ -33,11 +33,11 @@ lazy val mdui = (project in file("."))
   .settings(
       name := "Laminar MDUI",
       normalizedName := "laminar-mdui",
-      organization := "elgca",
+      organization := "io.github.elgca",
       homepage := Some(url("https://github.com/elgca/laminar-mdui-components")),
       developers := List(
           Developer(
-              id = "elgca",
+              id = "io.github.elgca",
               name = "Kewenchao",
               email = "modtekent@live.com",
               url = url("https://github.com/elgca"),
