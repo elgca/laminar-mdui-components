@@ -39,11 +39,11 @@ class MduiIconGenerator(
       .listFiles()
       .filter(x => x.getName.endsWith(".js"))
       .map(x => {
-        val tagName = "mdui-icon-" + x.getName.dropRight(".js".length)
+//        val tagName = "mdui-icon-" + x.getName.dropRight(".js".length)
 //        val importPath = npmPath + "/" + x.getName
-        val scalaName = scalifyName("icon-", tagName)
+        val scalaName = scalifyName("", x.getName.dropRight(".js".length))
         // (tagName, scalaName, jsPath)
-        (tagName, scalaName, x)
+        ("", scalaName, x)
       })
     // check valid
     val validIcons = iconJs

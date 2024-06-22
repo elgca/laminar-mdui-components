@@ -24,8 +24,8 @@ case class Config(
 
   MduiIconGenerator(
       config.copy(jsImportBasePath = "@mdui/icons"),
-      forceScalaName = { case "mdui-icon-insert-chart--outlined" =>
-        "IconInsertChart2Outlined"
+      forceScalaName = { case "insert-chart--outlined" =>
+        "IconInsertChartOutlined2"
       },
   ).generate()
 }
