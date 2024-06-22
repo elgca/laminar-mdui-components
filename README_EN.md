@@ -21,6 +21,7 @@
 
 
 This is a binding from MDUI to Laminar. MDUI is a good UI library based on web components and does not rely on any framework. Very suitable for use as a universal component library.
+
 This project contains two modules
 
 - The code generator in the directory src , work in the JVM, where most of the code comes from the generator in [laminar-shoelace-components](https://github.com/raquo/laminar-shoelace-components)
