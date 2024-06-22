@@ -43,7 +43,7 @@
 sbt :
 
 ```scala
-libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.1.0"
+libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.2.0"
 ```
 
 编译
@@ -74,7 +74,7 @@ mdui.Button(
 
 mdui.Button(
   _.slots.icon(
-    mdui.icon.IconmduiIcon10mp()
+    mdui.icon.Icon10mp()
   )
 )
 

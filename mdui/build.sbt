@@ -33,7 +33,7 @@ lazy val mdui = (project in file("."))
   )
   .settings(
       //   versionScheme := Some("early-semver"),
-      version := "0.1.0",
+      version := "0.2.0",
       name := "Laminar MDUI",
       normalizedName := "laminar-mdui",
       organization := "io.github.elgca",

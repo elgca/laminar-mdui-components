@@ -41,7 +41,7 @@ The generated code has not been fully tested, and there may be some incomplete a
 sbt :
 
 ```scala
-libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.1.0"
+libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.2.0"
 ```
 
 compile
@@ -72,7 +72,7 @@ mdui.Button(
 
 mdui.Button(
   _.slots.icon(
-    mdui.icon.IconmduiIcon10mp()
+    mdui.icon.Icon10mp()
   )
 )
 
