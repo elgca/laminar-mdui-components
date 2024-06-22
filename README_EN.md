@@ -29,7 +29,7 @@ This project contains two modules
 
 # What work has been done
 
-- Removed most of the rules originally defined for Shoelaces and removed most of the hard code.
+- Removed most of the rules originally defined for Shoelaces and removed some hard code.
 - Try to generator all code from `custom-elements.json`, support more type.
 - Adjustments have been made to the supported types, and the support for enumeration properties has been well received
 - Added separate compilation processing for @ mdui/icon, which can be used like using Laminar tags
