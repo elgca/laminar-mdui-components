@@ -37,6 +37,12 @@ The generated code has not been fully tested, and there may be some incomplete a
 
 # How to use
 
+sbt :
+
+```scala
+libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.1.0"
+```
+
 compile
 ```shell
 npm install

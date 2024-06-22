@@ -40,6 +40,12 @@
 
 # 如何使用
 
+sbt :
+
+```scala
+libraryDependencies += "io.github.elgca" %%% "laminar-mdui" % "0.1.0"
+```
+
 编译
 ```shell
 npm install
